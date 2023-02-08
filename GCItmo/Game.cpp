@@ -4,6 +4,8 @@
 #include <directxmath.h>
 #include <chrono>
 
+Game* Game::instance = nullptr;
+
 Game& Game::GetInstance()
 {
 	if (instance == nullptr)
@@ -17,7 +19,7 @@ void Game::Initialize()
 	constexpr auto winHeight = 800;
 	constexpr auto winWidth = 800;
 
-	display = DisplayWin32(winHeight, winWidth, L"My3D App");
+	display = new DisplayWin32(winHeight, winWidth, L"My3D App");
 
 	constexpr D3D_FEATURE_LEVEL featureLevel[] = {D3D_FEATURE_LEVEL_11_1};
 
@@ -31,7 +33,7 @@ void Game::Initialize()
 	swapDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	swapDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	swapDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	swapDesc.OutputWindow = display.hWnd;
+	swapDesc.OutputWindow = display->hWnd;
 	swapDesc.Windowed = true;
 	swapDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	swapDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
@@ -84,7 +86,7 @@ void Game::Initialize()
 		// If there was  nothing in the error message then it simply could not find the shader file itself.
 		else
 		{
-			MessageBox(display.hWnd, L"MyVeryFirstShader.hlsl", L"Missing Shader File", MB_OK);
+			MessageBox(display->hWnd, L"MyVeryFirstShader.hlsl", L"Missing Shader File", MB_OK);
 		}
 	}
 
@@ -193,8 +195,8 @@ void Game::Update(float deltaTime)
 	context->RSSetState(rastState);
 
 	D3D11_VIEWPORT viewport = {};
-	viewport.Width = static_cast<float>(display.client_width);
-	viewport.Height = static_cast<float>(display.client_height);
+	viewport.Width = static_cast<float>(display->client_width);
+	viewport.Height = static_cast<float>(display->client_height);
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
 	viewport.MinDepth = 0;
@@ -229,7 +231,6 @@ void Game::Update(float deltaTime)
 Game::Game()
 {
 	Initialize();
-
 	Run();
 }
 
