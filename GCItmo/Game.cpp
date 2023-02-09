@@ -14,19 +14,12 @@ Game& Game::GetInstance()
 	return *instance;
 }
 
-void Game::Initialize()
+void Game::SetSwapDesc()
 {
-	constexpr auto winHeight = 800;
-	constexpr auto winWidth = 800;
-
-	display = new DisplayWin32(winHeight, winWidth, L"My3D App");
-
-	constexpr D3D_FEATURE_LEVEL featureLevel[] = {D3D_FEATURE_LEVEL_11_1};
-
-	DXGI_SWAP_CHAIN_DESC swapDesc = {};
+	swapDesc = {};
 	swapDesc.BufferCount = 2;
-	swapDesc.BufferDesc.Width = winWidth;
-	swapDesc.BufferDesc.Height = winHeight;
+	swapDesc.BufferDesc.Width = display->client_width;
+	swapDesc.BufferDesc.Height = display->client_height;
 	swapDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	swapDesc.BufferDesc.RefreshRate.Numerator = 60;
 	swapDesc.BufferDesc.RefreshRate.Denominator = 1;
@@ -39,9 +32,11 @@ void Game::Initialize()
 	swapDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	swapDesc.SampleDesc.Count = 1;
 	swapDesc.SampleDesc.Quality = 0;
+}
 
-	Microsoft::WRL::ComPtr<ID3D11Device> device;
-
+void Game::CreateDeviceAndSwapChain()
+{
+	constexpr D3D_FEATURE_LEVEL featureLevel[] = {D3D_FEATURE_LEVEL_11_1};
 
 	auto res = D3D11CreateDeviceAndSwapChain(
 		nullptr,
@@ -57,22 +52,24 @@ void Game::Initialize()
 		nullptr,
 		&context);
 
-	ID3D11Texture2D* backTex;
 
 	res = swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backTex);
 	res = device->CreateRenderTargetView(backTex, nullptr, &renderTargetView);
+}
 
-	ID3DBlob* vertexBC = nullptr;
-	ID3DBlob* errorVertexCode = nullptr;
-	res = D3DCompileFromFile(L"./Shaders/MyVeryFirstShader.hlsl",
-	                         nullptr /*macros*/,
-	                         nullptr /*include*/,
-	                         "VSMain",
-	                         "vs_5_0",
-	                         D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
-	                         0,
-	                         &vertexBC,
-	                         &errorVertexCode);
+void Game::CompileFromFile()
+{
+	vertexBC = nullptr;
+	errorVertexCode = nullptr;
+	const auto res = D3DCompileFromFile(fileName,
+	                                    nullptr /*macros*/,
+	                                    nullptr /*include*/,
+	                                    "VSMain",
+	                                    "vs_5_0",
+	                                    D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
+	                                    0,
+	                                    &vertexBC,
+	                                    &errorVertexCode);
 
 	if (FAILED(res))
 	{
@@ -86,17 +83,20 @@ void Game::Initialize()
 		// If there was  nothing in the error message then it simply could not find the shader file itself.
 		else
 		{
-			MessageBox(display->hWnd, L"MyVeryFirstShader.hlsl", L"Missing Shader File", MB_OK);
+			MessageBox(display->hWnd, fileName, L"Missing Shader File", MB_OK);
 		}
 	}
+}
 
+void Game::Render()
+{
 	D3D_SHADER_MACRO Shader_Macros[] = {"TEST", "1", "TCOLOR", "float4(0.0f, 1.0f, 0.0f, 1.0f)", nullptr, nullptr};
 
 	ID3DBlob* pixelBC;
 	ID3DBlob* errorPixelCode;
-	res = D3DCompileFromFile(L"./Shaders/MyVeryFirstShader.hlsl", Shader_Macros /*macros*/, nullptr /*include*/,
-	                         "PSMain", "ps_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &pixelBC,
-	                         &errorPixelCode);
+	auto res = D3DCompileFromFile(fileName, Shader_Macros /*macros*/, nullptr /*include*/,
+	                              "PSMain", "ps_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &pixelBC,
+	                              &errorPixelCode);
 
 	device->CreateVertexShader(
 		vertexBC->GetBufferPointer(),
@@ -175,17 +175,25 @@ void Game::Initialize()
 
 	device->CreateBuffer(&indexBufDesc, &indexData, &indexBuffer);
 
-	strides = {(UINT*)32};
-	offsets = {0};
-
-
-	CD3D11_RASTERIZER_DESC rastDesc = {};
 	rastDesc.CullMode = D3D11_CULL_NONE;
 	rastDesc.FillMode = D3D11_FILL_SOLID;
 
 	res = device->CreateRasterizerState(&rastDesc, &rastState);
 
 	context->RSSetState(rastState);
+}
+
+void Game::Initialize()
+{
+	constexpr auto winHeight = 800;
+	constexpr auto winWidth = 800;
+
+	display = new DisplayWin32(winHeight, winWidth, L"My3D App");
+
+	SetSwapDesc();
+	CreateDeviceAndSwapChain();
+	CompileFromFile();
+	Render();
 }
 
 void Game::Update(float deltaTime)
