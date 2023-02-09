@@ -31,8 +31,8 @@ private:
 	CD3D11_RASTERIZER_DESC rastDesc = {};
 	LPCWSTR fileName = L"Shaders/MyVeryFirstShader.hlsl";
 
-	UINT strides[1] = { 32 }; //m
-	UINT offsets[1] = { 0 }; //m
+	UINT strides[1] = { 32 };
+	UINT offsets[1] = { 0 };
 
 	float totalTime;
 

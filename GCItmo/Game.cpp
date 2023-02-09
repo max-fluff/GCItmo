@@ -206,7 +206,7 @@ void Game::Update(float deltaTime)
 	viewport.Width = static_cast<float>(display->client_width);
 	viewport.Height = static_cast<float>(display->client_height);
 	viewport.TopLeftX = 0;
-	viewport.TopLeftY = 0;
+	viewport.TopLeftY = totalTime * 10;
 	viewport.MinDepth = 0;
 	viewport.MaxDepth = 1.0f;
 
