@@ -39,7 +39,6 @@ public:
 		const LPCWSTR applicationName = appName;
 		const HINSTANCE hInstance = GetModuleHandle(nullptr);
 
-#pragma region Window init
 		wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 		wc.lpfnWndProc = WndProc;
 		wc.cbClsExtra = 0;

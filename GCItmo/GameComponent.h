@@ -1,4 +1,5 @@
 #pragma once
+
 class GameComponent
 {
 public:
@@ -6,12 +7,13 @@ public:
 
 	virtual void Init()
 	{
-		
 	}
 
-	virtual void Update()
+	virtual void Update(float deltaTime)
 	{
+	}
 
+	virtual void Draw()
+	{
 	}
 };
-
