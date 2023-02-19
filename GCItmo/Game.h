@@ -31,7 +31,6 @@ private:
 
 	void SetSwapDesc();
 	void CreateDeviceAndSwapChain();
-	void CompileShaderFromFile();
 	void Render();
 	void PreDraw();
 	void PostDraw();

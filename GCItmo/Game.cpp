@@ -66,16 +66,6 @@ void Game::CreateDeviceAndSwapChain()
 	context->RSSetState(rastState);
 }
 
-void Game::CompileShaderFromFile()
-{
-	rastDesc.CullMode = D3D11_CULL_NONE;
-	rastDesc.FillMode = D3D11_FILL_SOLID;
-
-	device->CreateRasterizerState(&rastDesc, &rastState);
-
-	context->RSSetState(rastState);
-}
-
 void Game::Initialize()
 {
 	constexpr auto winHeight = 800;
@@ -85,7 +75,6 @@ void Game::Initialize()
 
 	SetSwapDesc();
 	CreateDeviceAndSwapChain();
-	CompileShaderFromFile();
 
 	components.push_back(new FirstLessonSquare(this));
 

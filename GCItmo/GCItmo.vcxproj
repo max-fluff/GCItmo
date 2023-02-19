@@ -21,14 +21,12 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
-    <ClCompile Include="PhysicsObject2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DisplayWin32.h" />
     <ClInclude Include="FirstLessonSquare.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
-    <ClInclude Include="PhysicsObject2D.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
