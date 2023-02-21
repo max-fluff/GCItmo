@@ -26,15 +26,15 @@ inline LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM 
 class DisplayWin32
 {
 public:
-	int client_height;
-	int client_width;
+	int initClientHeight;
+	int initClientWidth;
 	WNDCLASSEX wc{};
 	HWND hWnd;
 
 	DisplayWin32(const int height, const int width, const LPCWSTR appName)
 	{
-		client_height = height;
-		client_width = width;
+		initClientHeight = height;
+		initClientWidth = width;
 
 		const LPCWSTR applicationName = appName;
 		const HINSTANCE hInstance = GetModuleHandle(nullptr);
@@ -54,13 +54,13 @@ public:
 
 		RegisterClassEx(&wc);
 
-		RECT windowRect = {0, 0, static_cast<LONG>(client_width), static_cast<LONG>(client_height)};
+		RECT windowRect = {0, 0, static_cast<LONG>(initClientWidth), static_cast<LONG>(initClientHeight)};
 		AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, FALSE);
 
 		constexpr auto dwStyle = WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_THICKFRAME;
 
-		const auto posX = (GetSystemMetrics(SM_CXSCREEN) - client_width) / 2;
-		const auto posY = (GetSystemMetrics(SM_CYSCREEN) - client_height) / 2;
+		const auto posX = (GetSystemMetrics(SM_CXSCREEN) - initClientWidth) / 2;
+		const auto posY = (GetSystemMetrics(SM_CYSCREEN) - initClientHeight) / 2;
 
 		hWnd = CreateWindowEx(WS_EX_APPWINDOW, applicationName, applicationName,
 		                      dwStyle,

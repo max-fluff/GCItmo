@@ -1,6 +1,7 @@
 #pragma once
 #include "DisplayWin32.h"
 #include "GameComponent.h"
+#include "InputDevice.h"
 #include <d3d11.h>
 #include <vector>
 
@@ -15,6 +16,8 @@ private:
 	static Game* instance;
 
 	DisplayWin32* display;
+
+	InputDevice* inputDevice;
 
 	IDXGISwapChain* swapChain;
 	DXGI_SWAP_CHAIN_DESC swapDesc;
@@ -31,7 +34,6 @@ private:
 
 	void SetSwapDesc();
 	void CreateDeviceAndSwapChain();
-	void Render();
 	void PreDraw();
 	void PostDraw();
 

@@ -5,6 +5,8 @@
 #include <chrono>
 
 #include "FirstLessonSquare.h"
+#include "Player.h"
+#include "RectObject.h"
 
 Game* Game::instance = nullptr;
 
@@ -20,8 +22,8 @@ void Game::SetSwapDesc()
 {
 	swapDesc = {};
 	swapDesc.BufferCount = 2;
-	swapDesc.BufferDesc.Width = display->client_width;
-	swapDesc.BufferDesc.Height = display->client_height;
+	swapDesc.BufferDesc.Width = display->initClientWidth;
+	swapDesc.BufferDesc.Height = display->initClientHeight;
 	swapDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	swapDesc.BufferDesc.RefreshRate.Numerator = 60;
 	swapDesc.BufferDesc.RefreshRate.Denominator = 1;
@@ -69,16 +71,31 @@ void Game::CreateDeviceAndSwapChain()
 void Game::Initialize()
 {
 	constexpr auto winHeight = 800;
-	constexpr auto winWidth = 800;
+	constexpr auto winWidth = 1200;
 
 	display = new DisplayWin32(winHeight, winWidth, L"My3D App");
+
+	inputDevice = new InputDevice();
 
 	SetSwapDesc();
 	CreateDeviceAndSwapChain();
 
-	components.push_back(new FirstLessonSquare(this));
+	const auto leftPlayerBarVertex = new Vertex{-0.5f + 0.1f, 0.0f, 255, 0, 0, 1};
+	const auto rightPlayerBarVertex = new Vertex{0.5f - 0.1f, 0.0f, 255, 0, 0, 1};
 
-	for (auto component : components)
+	constexpr auto playerHeight = 1.0f;
+
+	const auto leftPlayerRect = new RectObject(this, leftPlayerBarVertex, 0.1f, playerHeight);
+	const auto rightPlayerRect = new RectObject(this, rightPlayerBarVertex, 0.1f, playerHeight);
+
+	components.push_back(new Player(inputDevice, leftPlayerRect, 'S', 'W', playerHeight / 2.0f - 0.5f, 0.5f - playerHeight / 2.0f));
+	components.push_back(new Player(inputDevice, rightPlayerRect, VK_DOWN, VK_UP, playerHeight / 2.0f - 0.5f, 0.5f - playerHeight / 2.0f));
+	components.push_back(leftPlayerRect);
+	components.push_back(rightPlayerRect);
+	components.push_back(new RectObject(this, new Vertex{0.0f, 0.0f, 255, 255, 255, 1}, 30.0f / winWidth,
+	                                    30.0f / winHeight));
+
+	for (const auto component : components)
 		component->Init();
 }
 
@@ -107,8 +124,8 @@ void Game::PreDraw()
 	context->RSSetState(rastState);
 
 	D3D11_VIEWPORT viewport = {};
-	viewport.Width = static_cast<float>(display->client_width);
-	viewport.Height = static_cast<float>(display->client_height);
+	viewport.Width = static_cast<float>(display->initClientWidth);
+	viewport.Height = static_cast<float>(display->initClientHeight);
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
 	viewport.MinDepth = 0;
@@ -118,7 +135,7 @@ void Game::PreDraw()
 
 	context->OMSetRenderTargets(1, &renderTargetView, nullptr);
 
-	const float color[] = {totalTime, 0.1f, 0.1f, 1.0f};
+	constexpr float color[] = {0.1f, 0.1f, 0.1f, 1.0f};
 	context->ClearRenderTargetView(renderTargetView, color);
 }
 
