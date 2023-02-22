@@ -3,7 +3,7 @@
 #include <iostream>
 
 Game* game;
-DWORD lastTimeSinceStart;
+DWORD lastTimeSinceStart = GetTickCount();
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
@@ -27,7 +27,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 
 	case WM_PAINT:
 		{
-			static float t = 0.0f;
 			const DWORD dwTimeCur = GetTickCount();
 
 			const auto deltaTime = (dwTimeCur - lastTimeSinceStart) / 1000.0f;

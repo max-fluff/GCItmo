@@ -1,7 +1,5 @@
 #include "Player.h"
 
-#include <iostream>
-
 Player::Player(InputDevice* inputDevice,
                RectObject* controllableObject,
                const unsigned char downKey,

@@ -19,18 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="DisplayWin32.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
+    <ClCompile Include="Physics2DObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RectObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="DisplayWin32.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
     <ClInclude Include="InputDevice.h" />
+    <ClInclude Include="Physics2DObject.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RectObject.h" />
     <ClInclude Include="resource.h" />

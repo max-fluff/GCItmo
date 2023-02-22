@@ -4,8 +4,8 @@
 #include <directxmath.h>
 #include <chrono>
 
+#include "Ball.h"
 #include "DisplayWin32.h"
-#include "FirstLessonSquare.h"
 #include "Player.h"
 #include "RectObject.h"
 
@@ -88,15 +88,17 @@ void Game::Initialize()
 
 	const auto leftPlayerRect = new RectObject(this, leftPlayerBarVertex, 0.05f, playerHeight);
 	const auto rightPlayerRect = new RectObject(this, rightPlayerBarVertex, 0.05f, playerHeight);
+	const auto ball = new RectObject(this, new Vertex{0.0f, 0.0f, 255, 255, 255, 1}, 30.0f / winWidth,
+	                                 30.0f / winHeight);
 
 	components.push_back(new Player(inputDevice, leftPlayerRect, 'S', 'W', playerHeight / 2.0f - 1.0f,
 	                                1.0f - playerHeight / 2.0f));
 	components.push_back(new Player(inputDevice, rightPlayerRect, VK_DOWN, VK_UP, playerHeight / 2.0f - 1.0f,
 	                                1.0f - playerHeight / 2.0f));
+	components.push_back(new Ball(ball));
 	components.push_back(leftPlayerRect);
 	components.push_back(rightPlayerRect);
-	components.push_back(new RectObject(this, new Vertex{0.0f, 0.0f, 255, 255, 255, 1}, 30.0f / winWidth,
-	                                    30.0f / winHeight));
+	components.push_back(ball);
 
 	for (const auto component : components)
 		component->Init();
