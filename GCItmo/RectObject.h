@@ -4,20 +4,20 @@
 #include "Vertex.h"
 #include <wrl/client.h>
 
-#include "GameComponent.h"
+#include "Physics2DObject.h"
 
 using namespace Microsoft::WRL;
 using namespace DirectX::SimpleMath;
 
 class Game;
 
-class RectObject: public GameComponent
+class RectObject : public Physics2DObject
 {
 public:
 	RectObject(Game* game,
-		Vertex* vertex,
-		float width,
-		float height);
+	           Vertex* vertex,
+	           float width,
+	           float height);
 	void Draw() override;
 	Pos GetPosition();
 	float GetPositionX();
@@ -46,4 +46,3 @@ private:
 	float width = 0;
 	float height = 0;
 };
-

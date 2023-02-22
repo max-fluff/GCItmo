@@ -1,15 +1,20 @@
 #include "Player.h"
 
-Player::Player(InputDevice* inputDevice,
-               RectObject* controllableObject,
+Player::Player(Game* game,
+               Vertex* vertex,
+               float width,
+               float height,
+               InputDevice* inputDevice,
                const unsigned char downKey,
                const unsigned char upKey,
                const float minPosition,
                const float maxPosition)
-	: inputDevice(inputDevice),
+	: RectObject(game,
+	             vertex,
+	             width,
+	             height), inputDevice(inputDevice),
 	  downKey(downKey),
 	  upKey(upKey),
-	  controllableObject(controllableObject),
 	  minPosition(minPosition),
 	  maxPosition(maxPosition)
 {
@@ -18,10 +23,10 @@ Player::Player(InputDevice* inputDevice,
 void Player::Update(float deltaTime)
 {
 	const auto moveDirection = inputDevice->KeyIsPressed(downKey) ? -1 : 0 + inputDevice->KeyIsPressed(upKey) ? 1 : 0;
-	auto currentPos = controllableObject->GetPositionY();
+	auto currentPos = GetPositionY();
 	currentPos += static_cast<float>(moveDirection) * SPEED * deltaTime;
 	currentPos = currentPos < minPosition ? minPosition : currentPos;
 	currentPos = currentPos > maxPosition ? maxPosition : currentPos;
 
-	controllableObject->SetPositionY(currentPos);
+	SetPositionY(currentPos);
 }

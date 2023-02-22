@@ -86,19 +86,16 @@ void Game::Initialize()
 
 	constexpr auto playerHeight = 0.5f;
 
-	const auto leftPlayerRect = new RectObject(this, leftPlayerBarVertex, 0.05f, playerHeight);
-	const auto rightPlayerRect = new RectObject(this, rightPlayerBarVertex, 0.05f, playerHeight);
-	const auto ball = new RectObject(this, new Vertex{0.0f, 0.0f, 255, 255, 255, 1}, 30.0f / winWidth,
-	                                 30.0f / winHeight);
-
-	components.push_back(new Player(inputDevice, leftPlayerRect, 'S', 'W', playerHeight / 2.0f - 1.0f,
+	components.push_back(new Player(this, leftPlayerBarVertex, 0.05f, playerHeight, inputDevice, 'S', 'W',
+	                                playerHeight / 2.0f - 1.0f,
 	                                1.0f - playerHeight / 2.0f));
-	components.push_back(new Player(inputDevice, rightPlayerRect, VK_DOWN, VK_UP, playerHeight / 2.0f - 1.0f,
+	components.push_back(new Player(this, rightPlayerBarVertex, 0.05f, playerHeight, inputDevice, VK_DOWN, VK_UP,
+	                                playerHeight / 2.0f - 1.0f,
 	                                1.0f - playerHeight / 2.0f));
-	components.push_back(new Ball(ball));
-	components.push_back(leftPlayerRect);
-	components.push_back(rightPlayerRect);
-	components.push_back(ball);
+	components.push_back(new Ball(this, new Vertex{0.0f, 0.0f, 255, 255, 255, 1}, 30.0f / winWidth,
+	                              30.0f / winHeight));
+	components.push_back(new RectObject(this, new Vertex(0.0f, 0.5f, 128, 128, 128, 1), 2.0f, 0.04f));
+	components.push_back(new RectObject(this, new Vertex(0.0f, -0.5f, 128, 128, 128, 1), 2.0f, 0.04f));
 
 	for (const auto component : components)
 		component->Init();
@@ -120,6 +117,39 @@ void Game::Update(float deltaTime)
 		component->Draw();
 
 	PostDraw();
+}
+
+void Game::ProcessCollisions()
+{
+	for (const auto element : components)
+	{
+		auto elemCasted = dynamic_cast<RectObject*>(element);
+		if (elemCasted)
+		{
+			for (const auto elementOther : components)
+			{
+				auto elementOtherCasted = dynamic_cast<RectObject*>(elementOther);
+				if (elementOtherCasted && elementOtherCasted != elemCasted)
+				{
+					auto rect1 = *new struct Rectangle(
+						elemCasted->GetPositionX(),
+						elemCasted->GetPositionY(),
+						elemCasted->GetWidth(),
+						elemCasted->GetHeight());
+					auto rect2 = *new struct Rectangle(
+						elementOtherCasted->GetPositionX(),
+						elementOtherCasted->GetPositionY(),
+						elementOtherCasted->GetWidth(),
+						elementOtherCasted->GetHeight());
+
+					if (rect1.Intersects(rect2))
+					{
+						Rectangle::Intersect(rect1, rect2);
+					}
+				}
+			}
+		}
+	}
 }
 
 void Game::PreDraw()
