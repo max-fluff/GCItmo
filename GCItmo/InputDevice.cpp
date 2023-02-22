@@ -23,11 +23,11 @@ bool InputDevice::KeyIsEmpty() const noexcept
 
 char InputDevice::ReadChar() noexcept
 {
-	if (charbuffer.size() > 0u)
+	if (!charbuffer.empty())
 	{
-		unsigned char charcode = charbuffer.front();
+		const unsigned char charCode = charbuffer.front();
 		charbuffer.pop();
-		return charcode;
+		return charCode;
 	}
 	else
 	{
@@ -71,21 +71,21 @@ bool InputDevice::AutorepeatIsEnabled() const noexcept
 	return autorepeatEnabled;
 }
 
-void InputDevice::OnKeyPressed(unsigned char keycode) noexcept
+void InputDevice::OnKeyPressed(const unsigned char keycode) noexcept
 {
 	keystates[keycode] = true;
 	keybuffer.push(InputDevice::Event(InputDevice::Event::Type::Press, keycode));
 	TrimBuffer(keybuffer);
 }
 
-void InputDevice::OnKeyReleased(unsigned char keycode) noexcept
+void InputDevice::OnKeyReleased(const unsigned char keycode) noexcept
 {
 	keystates[keycode] = false;
 	keybuffer.push(InputDevice::Event(InputDevice::Event::Type::Release, keycode));
 	TrimBuffer(keybuffer);
 }
 
-void InputDevice::OnChar(char character) noexcept
+void InputDevice::OnChar(const char character) noexcept
 {
 	charbuffer.push(character);
 	TrimBuffer(charbuffer);

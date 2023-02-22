@@ -6,7 +6,7 @@
 class Player : public GameComponent
 {
 private:
-	const float SPEED = 1; //percent*100 per second
+	const float SPEED = 3; //percent*100 per second
 	InputDevice* inputDevice;
 	unsigned char downKey;
 	unsigned char upKey;

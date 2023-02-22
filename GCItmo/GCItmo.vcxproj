@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DisplayWin32.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
@@ -29,6 +30,7 @@
     <ClInclude Include="DisplayWin32.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
+    <ClInclude Include="InputDevice.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RectObject.h" />
     <ClInclude Include="resource.h" />

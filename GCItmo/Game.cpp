@@ -4,6 +4,7 @@
 #include <directxmath.h>
 #include <chrono>
 
+#include "DisplayWin32.h"
 #include "FirstLessonSquare.h"
 #include "Player.h"
 #include "RectObject.h"
@@ -73,23 +74,25 @@ void Game::Initialize()
 	constexpr auto winHeight = 800;
 	constexpr auto winWidth = 1200;
 
-	display = new DisplayWin32(winHeight, winWidth, L"My3D App");
+	display = new DisplayWin32(winHeight, winWidth, L"My3D App", this);
 
 	inputDevice = new InputDevice();
 
 	SetSwapDesc();
 	CreateDeviceAndSwapChain();
 
-	const auto leftPlayerBarVertex = new Vertex{-0.5f + 0.1f, 0.0f, 255, 0, 0, 1};
-	const auto rightPlayerBarVertex = new Vertex{0.5f - 0.1f, 0.0f, 255, 0, 0, 1};
+	const auto leftPlayerBarVertex = new Vertex{-0.5f + 0.05f, 0.0f, 255, 128, 96, 1};
+	const auto rightPlayerBarVertex = new Vertex{0.5f - 0.05f, 0.0f, 128, 64, 16, 1};
 
-	constexpr auto playerHeight = 1.0f;
+	constexpr auto playerHeight = 0.5f;
 
-	const auto leftPlayerRect = new RectObject(this, leftPlayerBarVertex, 0.1f, playerHeight);
-	const auto rightPlayerRect = new RectObject(this, rightPlayerBarVertex, 0.1f, playerHeight);
+	const auto leftPlayerRect = new RectObject(this, leftPlayerBarVertex, 0.05f, playerHeight);
+	const auto rightPlayerRect = new RectObject(this, rightPlayerBarVertex, 0.05f, playerHeight);
 
-	components.push_back(new Player(inputDevice, leftPlayerRect, 'S', 'W', playerHeight / 2.0f - 0.5f, 0.5f - playerHeight / 2.0f));
-	components.push_back(new Player(inputDevice, rightPlayerRect, VK_DOWN, VK_UP, playerHeight / 2.0f - 0.5f, 0.5f - playerHeight / 2.0f));
+	components.push_back(new Player(inputDevice, leftPlayerRect, 'S', 'W', playerHeight / 2.0f - 1.0f,
+	                                1.0f - playerHeight / 2.0f));
+	components.push_back(new Player(inputDevice, rightPlayerRect, VK_DOWN, VK_UP, playerHeight / 2.0f - 1.0f,
+	                                1.0f - playerHeight / 2.0f));
 	components.push_back(leftPlayerRect);
 	components.push_back(rightPlayerRect);
 	components.push_back(new RectObject(this, new Vertex{0.0f, 0.0f, 255, 255, 255, 1}, 30.0f / winWidth,
@@ -106,12 +109,12 @@ void Game::Update(float deltaTime)
 	if (totalTime > 1.0f)
 		totalTime = 0;
 
-	for (auto component : components)
+	for (const auto component : components)
 		component->Update(deltaTime);
 
 	PreDraw();
 
-	for (auto component : components)
+	for (const auto component : components)
 		component->Draw();
 
 	PostDraw();
@@ -162,7 +165,7 @@ void Game::Run()
 
 	while (!isExitRequested)
 	{
-		while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -172,12 +175,5 @@ void Game::Run()
 		{
 			isExitRequested = true;
 		}
-
-		auto curTime = std::chrono::steady_clock::now();
-		const float deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(curTime - PrevTime).count() /
-			1000000.0f;
-		PrevTime = curTime;
-
-		Update(deltaTime);
 	}
 }

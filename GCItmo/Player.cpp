@@ -22,8 +22,8 @@ void Player::Update(float deltaTime)
 	const auto moveDirection = inputDevice->KeyIsPressed(downKey) ? -1 : 0 + inputDevice->KeyIsPressed(upKey) ? 1 : 0;
 	auto currentPos = controllableObject->GetPositionY();
 	currentPos += static_cast<float>(moveDirection) * SPEED * deltaTime;
-	currentPos = currentPos < minPosition ? currentPos : minPosition;
-	currentPos = currentPos > maxPosition ? currentPos : maxPosition;
+	currentPos = currentPos < minPosition ? minPosition : currentPos;
+	currentPos = currentPos > maxPosition ? maxPosition : currentPos;
 
 	controllableObject->SetPositionY(currentPos);
 }

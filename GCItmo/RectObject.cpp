@@ -1,5 +1,7 @@
 #include "RectObject.h"
 #include <d3dcompiler.h>
+#include <iostream>
+
 #include "Game.h"
 
 struct ConstantBuffer
