@@ -89,8 +89,8 @@ void Game::Initialize()
 	components.push_back(topWall);
 	components.push_back(bottomWall);
 
-	const auto leftPlayerBarVertex = new Vertex{-1.0f + 0.05f, 0.0f, 255, 128, 96, 1};
-	const auto rightPlayerBarVertex = new Vertex{1.0f - 0.05f, 0.0f, 128, 64, 16, 1};
+	const auto leftPlayerBarVertex = new Vertex{-1.0f + 0.05f, 0.0f, 255, 128, 164, 1};
+	const auto rightPlayerBarVertex = new Vertex{1.0f - 0.05f, 0.0f, 64, 64, 196, 1};
 
 	constexpr auto playerHeight = 0.5f;
 	auto minRacketPos = playerHeight / 2.0f - 1.0f + 0.02f;
@@ -109,8 +109,8 @@ void Game::Initialize()
 	components.push_back(player1);
 	components.push_back(player2);
 
-	const auto gate1Vertex = new Vertex{-1.03f, 0.0f, 128, 64, 16, 1};
-	const auto gate2Vertex = new Vertex{1.03f, 0.0f, 128, 64, 16, 1};
+	const auto gate1Vertex = new Vertex{-1.03f, 0.0f, 96, 128, 16, 1};
+	const auto gate2Vertex = new Vertex{1.03f, 0.0f, 128, 64, 96, 1};
 
 	auto gate1 = new RectObject(this, gate1Vertex, 0.1f, 1.96f);
 	gate1->generateCollisions = false;
