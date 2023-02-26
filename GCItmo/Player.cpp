@@ -1,5 +1,9 @@
 #include "Player.h"
 
+#include <iostream>
+
+#include "Ball.h"
+
 Player::Player(Game* game,
                Vertex* vertex,
                float width,
@@ -29,4 +33,16 @@ void Player::Update(float deltaTime)
 	currentPos = currentPos > maxPosition ? maxPosition : currentPos;
 
 	SetPositionY(currentPos);
+}
+
+void Player::OnCollision(Vector2 normal, Vector2 point, Physics2DObject* other)
+{
+	const auto ball = dynamic_cast<Ball*>(other);
+	if (ball)
+	{
+		auto ballVelocity = ball->GetVelocity();
+		//const auto y = ballVelocity.y - 0.1f;
+		//ballVelocity.y = y;
+		ball->SetVelocity(ballVelocity * 1.1f);
+	}
 }

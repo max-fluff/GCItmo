@@ -8,7 +8,7 @@ class Physics2DObject : public GameComponent
 protected:
 	DirectX::SimpleMath::Vector2 currentVelocity;
 public:
-	bool isKinematic = false;
+	bool generateCollisions = true;
 
 	virtual void OnCollision(DirectX::SimpleMath::Vector2 normal, DirectX::SimpleMath::Vector2 point,	                         Physics2DObject* other);
 	virtual void SetVelocity(DirectX::SimpleMath::Vector2 velocity);

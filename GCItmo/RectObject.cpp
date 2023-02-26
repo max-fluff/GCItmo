@@ -14,10 +14,22 @@ RectObject::RectObject(Game* game, Vertex* vertex, float width, float height)
 {
 	Vertex vertices[] =
 	{
-		{vertex->pos.x + width / 2, vertex->pos.y + height / 2, vertex->color.r, vertex->color.g, vertex->color.b, vertex->color.a},
-		{vertex->pos.x - width / 2, vertex->pos.y - height / 2, vertex->color.r, vertex->color.g, vertex->color.b, vertex->color.a},
-		{vertex->pos.x + width / 2, vertex->pos.y - height / 2, vertex->color.r, vertex->color.g, vertex->color.b, vertex->color.a},
-		{vertex->pos.x - width / 2, vertex->pos.y + height / 2, vertex->color.r, vertex->color.g, vertex->color.b, vertex->color.a}
+		{
+			vertex->pos.x + width / 2, vertex->pos.y + height / 2, vertex->color.r, vertex->color.g, vertex->color.b,
+			vertex->color.a
+		},
+		{
+			vertex->pos.x - width / 2, vertex->pos.y - height / 2, vertex->color.r, vertex->color.g, vertex->color.b,
+			vertex->color.a
+		},
+		{
+			vertex->pos.x + width / 2, vertex->pos.y - height / 2, vertex->color.r, vertex->color.g, vertex->color.b,
+			vertex->color.a
+		},
+		{
+			vertex->pos.x - width / 2, vertex->pos.y + height / 2, vertex->color.r, vertex->color.g, vertex->color.b,
+			vertex->color.a
+		}
 	};
 
 	D3D11_BUFFER_DESC bd;
@@ -39,8 +51,8 @@ RectObject::RectObject(Game* game, Vertex* vertex, float width, float height)
 
 	const unsigned short indices[] =
 	{
-		0,2,1,
-		0,1,3
+		0, 2, 1,
+		0, 1, 3
 	};
 
 
@@ -112,7 +124,6 @@ RectObject::RectObject(Game* game, Vertex* vertex, float width, float height)
 	game->device->CreateBuffer(&cbd, nullptr, &pConstantBuffer);
 
 	game->context->VSSetConstantBuffers(0u, 1u, pConstantBuffer.GetAddressOf());
-
 }
 
 void RectObject::Draw()
@@ -126,43 +137,43 @@ void RectObject::Draw()
 		&stride,
 		&offset
 	);
-	
+
 	game->context->IASetIndexBuffer(pIndexBuffer, DXGI_FORMAT_R16_UINT, 0u);
-	
+
 	game->context->PSSetShader(pPixelShader.Get(), nullptr, 0u);
-	
+
 	game->context->VSSetShader(pVertexShader.Get(), nullptr, 0u);
-	
+
 	game->context->IASetInputLayout(pInputLayout.Get());
-	
+
 	game->context->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	const unsigned short indices[] =
 	{
-		0,2,1,
-		0,1,3
+		0, 2, 1,
+		0, 1, 3
 	};
 
 	const ConstantBuffer cb =
 	{
 		{
-			DirectX::XMMatrixTranspose(
+			XMMatrixTranspose(
 				DirectX::XMMatrixTranslation(
-					startVertex->pos.x + localPosX,
-					startVertex->pos.y + localPosY,
+					localPosX,
+					localPosY,
 					0)
 			)
 		}
 	};
 	game->context->VSSetConstantBuffers(0u, 1u, pConstantBuffer.GetAddressOf());
 	game->context->UpdateSubresource(pConstantBuffer.Get(), 0, NULL, &cb, 0, 0);
-	
+
 	game->context->DrawIndexed((UINT)std::size(indices), 0u, 0u);
 }
 
 Pos RectObject::GetPosition()
 {
-	return { GetPositionX(), GetPositionY() };
+	return {GetPositionX(), GetPositionY()};
 }
 
 float RectObject::GetPositionX()
@@ -203,20 +214,20 @@ float RectObject::GetHeight()
 
 Pos RectObject::GetLeftTop()
 {
-	return { GetPositionX() - width / 2, GetPositionY() + height / 2 };
+	return {GetPositionX() - width / 2, GetPositionY() + height / 2};
 }
 
 Pos RectObject::GetRightTop()
 {
-	return { GetPositionX() + width / 2, GetPositionY() + height / 2 };
+	return {GetPositionX() + width / 2, GetPositionY() + height / 2};
 }
 
 Pos RectObject::GetLeftBottom()
 {
-	return { GetPositionX() - width / 2, GetPositionY() - height / 2 };
+	return {GetPositionX() - width / 2, GetPositionY() - height / 2};
 }
 
 Pos RectObject::GetRightBottom()
 {
-	return { GetPositionX() + width / 2, GetPositionY() - height / 2 };
+	return {GetPositionX() + width / 2, GetPositionY() - height / 2};
 }

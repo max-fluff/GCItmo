@@ -48,8 +48,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 		}
 		game->inputDevice->OnKeyPressed(static_cast<unsigned char>(wparam));
 
-	// If a key is pressed send it to the input object so it can record that state.
-		std::cout << "Key: " << (unsigned int)wparam << std::endl;
+	//	std::cout << "Key: " << (unsigned int)wparam << std::endl;
 
 		if ((unsigned int)wparam == 27) PostQuitMessage(0);
 		break;

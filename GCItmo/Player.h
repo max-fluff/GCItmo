@@ -26,4 +26,6 @@ public:
 	       float minPosition,
 	       float maxPosition);
 	void Update(float deltaTime) override;
+
+	void OnCollision(Vector2 normal, Vector2 point, Physics2DObject* other) override;
 };

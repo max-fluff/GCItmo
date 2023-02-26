@@ -22,24 +22,24 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="DisplayWin32.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gate.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
     <ClCompile Include="Physics2DObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RectObject.cpp" />
+    <ClCompile Include="ScoreComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="DisplayWin32.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
-    <ClInclude Include="Gate.h" />
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="Physics2DObject.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RectObject.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
@@ -81,7 +81,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

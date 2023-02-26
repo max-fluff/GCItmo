@@ -14,6 +14,8 @@ class Game;
 class RectObject : public Physics2DObject
 {
 public:
+	bool useContinuousCollision = false;
+
 	RectObject(Game* game,
 	           Vertex* vertex,
 	           float width,

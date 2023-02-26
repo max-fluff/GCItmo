@@ -1,7 +1,7 @@
 #include "Physics2DObject.h"
 
 void Physics2DObject::OnCollision(DirectX::SimpleMath::Vector2 normal, DirectX::SimpleMath::Vector2 point,
-	Physics2DObject* other)
+                                  Physics2DObject* other)
 {
 }
 

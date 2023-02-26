@@ -6,6 +6,8 @@
 #include <vector>
 #include <wrl/client.h>
 
+#include "Physics2DObject.h"
+
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3dcompiler.lib")
@@ -30,6 +32,9 @@ private:
 	float totalTime;
 
 	std::vector<GameComponent*> components;
+	std::vector<std::pair<Physics2DObject*, Physics2DObject*>> collidedPair;
+
+	int test = 2;
 
 	Game();
 

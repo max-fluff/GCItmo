@@ -45,7 +45,7 @@
     <ClCompile Include="Physics2DObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Gate.cpp">
+    <ClCompile Include="ScoreComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClInclude Include="Physics2DObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Gate.h">
+    <ClInclude Include="ScoreComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
