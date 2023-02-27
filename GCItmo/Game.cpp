@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "RectObject.h"
 #include "ScoreComponent.h"
+#include "BallVisual.h"
 
 Game* Game::instance = nullptr;
 
@@ -126,6 +127,10 @@ void Game::Initialize()
 	components.push_back(ball);
 
 	components.push_back(new ScoreComponent(ball));
+
+	auto ballVisual = new BallVisual(this, new Vertex{ 0.0f, 0.0f, 255, 255, 255, 1 }, 15.0f / winHeight, 17, (float)display->initClientWidth / (float)display->initClientHeight, ball);
+
+	components.push_back(ballVisual);
 
 	for (const auto component : components)
 		component->Init();
