@@ -19,33 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="BallVisual.cpp" />
-    <ClCompile Include="CircleComponent.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="DisplayWin32.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
-    <ClCompile Include="Physics2DObject.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RectObject.cpp" />
-    <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="Planet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="BallVisual.h" />
-    <ClInclude Include="CircleComponent.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="ConstantBufferTypes.h" />
+    <ClInclude Include="Delegates.h" />
     <ClInclude Include="DisplayWin32.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
+    <ClInclude Include="GeometricPrimitive.h" />
     <ClInclude Include="InputDevice.h" />
-    <ClInclude Include="Physics2DObject.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="RectObject.h" />
+    <ClInclude Include="Keys.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="VertexTypes.h" />
+    <ClInclude Include="WICTextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GCItmo.rc" />

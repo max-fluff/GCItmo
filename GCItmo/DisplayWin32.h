@@ -13,7 +13,7 @@ public:
 	WNDCLASSEX wc{};
 	HWND hWnd;
 
-	DisplayWin32(const int height, const int width, const LPCWSTR appName, Game* gameInstance);
+	DisplayWin32(int height, const int width, const LPCWSTR appName, Game* gameInstance);
 
 	void SetAppWindowText(const WCHAR* text) const;
 };
