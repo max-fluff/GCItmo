@@ -22,28 +22,45 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="DisplayWin32.cpp" />
+    <ClCompile Include="DXSDK\Delegates.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="InputDevice.cpp" />
+    <ClCompile Include="GameComponents\Planet.cpp" />
+    <ClCompile Include="Input\WinInput.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
-    <ClCompile Include="Planet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraController.h" />
-    <ClInclude Include="ConstantBufferTypes.h" />
-    <ClInclude Include="Delegates.h" />
     <ClInclude Include="DisplayWin32.h" />
+    <ClInclude Include="DXSDK\Audio.h" />
+    <ClInclude Include="DXSDK\BufferHelpers.h" />
+    <ClInclude Include="DXSDK\CommonStates.h" />
+    <ClInclude Include="DXSDK\ConstantBufferTypes.h" />
+    <ClInclude Include="DXSDK\DDSTextureLoader.h" />
+    <ClInclude Include="DXSDK\Delegates.h" />
+    <ClInclude Include="DXSDK\DirectXHelpers.h" />
+    <ClInclude Include="DXSDK\Effects.h" />
+    <ClInclude Include="DXSDK\GamePad.h" />
+    <ClInclude Include="DXSDK\GraphicsMemory.h" />
+    <ClInclude Include="DXSDK\Keyboard.h" />
+    <ClInclude Include="DXSDK\Model.h" />
+    <ClInclude Include="DXSDK\Mouse.h" />
+    <ClInclude Include="DXSDK\PostProcess.h" />
+    <ClInclude Include="DXSDK\PrimitiveBatch.h" />
+    <ClInclude Include="DXSDK\ScreenGrab.h" />
+    <ClInclude Include="DXSDK\SimpleMath.h" />
+    <ClInclude Include="DXSDK\SpriteBatch.h" />
+    <ClInclude Include="DXSDK\SpriteFont.h" />
+    <ClInclude Include="DXSDK\VertexTypes.h" />
+    <ClInclude Include="DXSDK\WICTextureLoader.h" />
+    <ClInclude Include="DXSDK\XboxDDSTextureLoader.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
-    <ClInclude Include="GeometricPrimitive.h" />
+    <ClInclude Include="GameComponents\Planet.h" />
     <ClInclude Include="InputDevice.h" />
-    <ClInclude Include="Keys.h" />
-    <ClInclude Include="Planet.h" />
+    <ClInclude Include="Input\Keys.h" />
+    <ClInclude Include="Input\WinInput.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SimpleMath.h" />
-    <ClInclude Include="Vertex.h" />
-    <ClInclude Include="VertexTypes.h" />
-    <ClInclude Include="WICTextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GCItmo.rc" />
@@ -57,7 +74,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SimpleMath.inl" />
+    <None Include="DXSDK\SimpleMath.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -164,7 +164,7 @@ void Camera::SetLookAtPos(DirectX::XMFLOAT3 lookAtPos)
 }
 
 
-void Camera::AddjustTransformation(DirectX::XMMATRIX transformMat)
+void Camera::AdjustTransformation(DirectX::XMMATRIX transformMat)
 {
 	viewMatrix *= transformMat;
 }

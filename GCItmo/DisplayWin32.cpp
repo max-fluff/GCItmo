@@ -7,66 +7,14 @@ DWORD lastTimeSinceStart = GetTickCount();
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
-	if (game == nullptr) return 0;
-
 	switch (umessage)
 	{
-	case WM_DESTROY:
-	case WM_CLOSE:
-		{
-			PostQuitMessage(0);
-			return 0;
-		}
-
-	case WM_SIZE:
-		{
-			std::cout << "Width " << LOWORD(lparam) << " Height " << HIWORD(lparam) << std::endl;
-
-			return 0;
-		}
-
-	case WM_PAINT:
-		{
-			const DWORD dwTimeCur = GetTickCount();
-
-			const auto deltaTime = (dwTimeCur - lastTimeSinceStart) / 1000.0f;
-
-			lastTimeSinceStart = dwTimeCur;
-
-			game->Update(deltaTime);
-			return 0;
-		}
-
-	case WM_KILLFOCUS:
-		game->inputDevice->ClearState();
-		break;
-	case WM_SYSKEYDOWN:
 	case WM_KEYDOWN:
-		if (!(lparam & 0x40000000) || game->inputDevice->AutorepeatIsEnabled())
 		{
-			game->inputDevice->OnKeyPressed(static_cast<unsigned char>(wparam));
-		}
-		game->inputDevice->OnKeyPressed(static_cast<unsigned char>(wparam));
 
-	//	std::cout << "Key: " << (unsigned int)wparam << std::endl;
-
-		if ((unsigned int)wparam == 27) PostQuitMessage(0);
-		break;
-	case WM_SYSKEYUP:
-	case WM_KEYUP:
-		game->inputDevice->OnKeyReleased(static_cast<unsigned char>(wparam));
-		break;
-	case WM_CHAR:
-		game->inputDevice->OnChar(static_cast<unsigned char>(wparam));
-		break;
-	//End Input Device
-
-	case WM_LBUTTONDOWN:
-		{
+			if (static_cast<unsigned int>(wparam) == 27) PostQuitMessage(0);
 			return 0;
 		}
-
-	// All other messages pass to the message handler in the system class.
 	default:
 		{
 			return DefWindowProc(hwnd, umessage, wparam, lparam);

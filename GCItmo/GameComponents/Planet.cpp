@@ -1,10 +1,23 @@
 #include "Planet.h"
-#include "Game.h"
-#include "WICTextureLoader.h"
 
+#include <memory>
+
+#include "../Game.h"
+//#include "../DXSDK/WICTextureLoader.h"
+
+
+namespace DirectX
+{
+	namespace DX11
+	{
+		struct VertexPositionTexture;
+	}
+}
+
+class Game;
 
 Planet::Planet(std::shared_ptr<Game> game, float radius, float axisAngle = 3.0f, float orbitAngle = 0.5f,
-               float orbitRadius = 0.0f, LPCWSTR filepath = L"")
+               float orbitRadius = 0.0f, int sliceCount, int stackCount,LPCWSTR filepath = L""): sliceCount(sliceCount), stackCount(stackCount)
 {
 	this->game = game;
 	this->axeAngle = axisAngle;
@@ -35,11 +48,11 @@ void Planet::Draw()
 	HRESULT hr = game->device->CreateDepthStencilState(&depthStencilDesc, &(game->depthStencilState));
 
 	DirectX::XMMATRIX a = game->camera->GetViewMatrix();
-	shape->SetDepthBufferMode(false);
+	//shape->SetDepthBufferMode(false);
 
-	shape->Draw(modelMat * rotationAxisMat * DirectX::XMMatrixTranslation(orbitR, 0.0f, 0.0f) * rotationOrbitMat,
+	/*shape->Draw(modelMat * rotationAxisMat * DirectX::XMMatrixTranslation(orbitR, 0.0f, 0.0f) * rotationOrbitMat,
 		game->camera->GetViewMatrix(), game->camera->GetProjectionMatrix(), DirectX::Colors::White,
-		texture.Get(), false);
+		texture.Get(), false);*/
 	game->context->OMSetRenderTargets(0, nullptr, nullptr);
 }
 
@@ -62,9 +75,9 @@ void Planet::Init()
 	game->device->CreateBuffer(&constantBufDesc, 0, constantBuffer.GetAddressOf());
 
 
-	HRESULT res = DirectX::CreateWICTextureFromFile(game->device.Get(), filePath, nullptr, texture.GetAddressOf());
+	//HRESULT res = DirectX::CreateWICTextureFromFile(game->device, filePath, nullptr, texture.GetAddressOf());
 
-	shape = DirectX::GeometricPrimitive::CreateSphere(game->context, r, 32, false, true);
+	//shape = DirectX::GeometricPrimitive::CreateSphere(game->context, r, 32, false, true);
 }
 
 

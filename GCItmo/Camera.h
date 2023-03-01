@@ -25,7 +25,7 @@ public:
     void SetRotation(float x, float y, float z);
     void AdjustRotation(const DirectX::XMVECTOR & rot);
     void AdjustRotation(float x, float y, float z);
-    void AddjustTransformation(DirectX::XMMATRIX transformMat);
+    void AdjustTransformation(DirectX::XMMATRIX transformMat);
 
     void SetLookAtPos(DirectX::XMFLOAT3 lookAtPos);
 

@@ -70,9 +70,8 @@ void Game::Initialize()
 	constexpr auto winWidth = 1200;
 
 	display = new DisplayWin32(winHeight, winWidth, L"My3D App", this);
-
-	inputDevice = new InputDevice();
-
+	wInput = new WinInput(this);
+	
 	CreateDeviceAndSwapChain();
 
 	camera = new Camera();
@@ -119,6 +118,8 @@ void Game::Update(float deltaTime)
 	if (totalTime > 1.0f)
 		totalTime = 0;
 
+	wInput->GetInput();
+
 	cameraController->CameraMovement(deltaTime);
 
 	for (const auto component : components)
@@ -164,20 +165,11 @@ void Game::Run()
 	std::chrono::time_point<std::chrono::steady_clock> PrevTime = std::chrono::steady_clock::now();
 	totalTime = 0;
 
-	MSG msg = {};
-	bool isExitRequested = false;
-
-	while (!isExitRequested)
+	while (wInput->ProcessMessages())
 	{
-		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-
-		if (msg.message == WM_QUIT)
-		{
-			isExitRequested = true;
-		}
+		auto	curTime = std::chrono::steady_clock::now();
+		const float	deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(curTime - PrevTime).count() / 1000000.0f;
+		PrevTime = curTime;
+		Update(deltaTime);
 	}
 }

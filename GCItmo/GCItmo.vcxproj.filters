@@ -19,15 +19,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{b54d2166-8cc6-4f0d-ba6f-f16aa699d411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameComponents">
+      <UniqueIdentifier>{88a4956d-2ba4-4835-8494-170b1a457f49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MySuper3DApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DisplayWin32.cpp">
@@ -39,8 +42,14 @@
     <ClCompile Include="CameraController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Planet.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Input\WinInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Planet.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="DXSDK\Delegates.cpp">
+      <Filter>Libraries</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -56,12 +65,6 @@
     <ClInclude Include="DisplayWin32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleMath.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
     <ClInclude Include="InputDevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -71,25 +74,79 @@
     <ClInclude Include="CameraController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Planet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeometricPrimitive.h">
+    <ClInclude Include="DXSDK\ConstantBufferTypes.h">
       <Filter>Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="WICTextureLoader.h">
+    <ClInclude Include="DXSDK\Delegates.h">
       <Filter>Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="ConstantBufferTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexTypes.h">
+    <ClInclude Include="DXSDK\VertexTypes.h">
       <Filter>Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="Keys.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DXSDK\WICTextureLoader.h">
+      <Filter>Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="Delegates.h">
+    <ClInclude Include="Input\Keys.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\WinInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Planet.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\Audio.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\BufferHelpers.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\CommonStates.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\DDSTextureLoader.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\DirectXHelpers.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\Effects.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\GamePad.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\GraphicsMemory.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\Keyboard.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\Model.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\Mouse.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\PostProcess.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\PrimitiveBatch.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\ScreenGrab.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\SpriteBatch.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\SpriteFont.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\XboxDDSTextureLoader.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\SimpleMath.h">
       <Filter>Libraries</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,7 +164,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SimpleMath.inl">
+    <None Include="DXSDK\SimpleMath.inl">
       <Filter>Libraries</Filter>
     </None>
   </ItemGroup>

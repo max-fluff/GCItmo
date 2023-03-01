@@ -2,11 +2,10 @@
 #include <windows.h>
 #include <WinUser.h>
 
-#include "Game.h"
+class Game;
 
 class DisplayWin32
 {
-	friend class Game;
 public:
 	int initClientHeight;
 	int initClientWidth;
