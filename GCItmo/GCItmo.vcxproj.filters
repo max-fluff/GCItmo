@@ -25,6 +25,9 @@
     <Filter Include="GameComponents">
       <UniqueIdentifier>{88a4956d-2ba4-4835-8494-170b1a457f49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DirectXSDK">
+      <UniqueIdentifier>{375cb442-f723-4fa9-8488-11c3be3065c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MySuper3DApp.cpp">
@@ -49,7 +52,10 @@
       <Filter>GameComponents</Filter>
     </ClCompile>
     <ClCompile Include="DXSDK\Delegates.cpp">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereObject.cpp">
+      <Filter>GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,18 +80,6 @@
     <ClInclude Include="CameraController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DXSDK\ConstantBufferTypes.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="DXSDK\Delegates.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="DXSDK\VertexTypes.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="DXSDK\WICTextureLoader.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
     <ClInclude Include="Input\Keys.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -95,59 +89,74 @@
     <ClInclude Include="GameComponents\Planet.h">
       <Filter>GameComponents</Filter>
     </ClInclude>
+    <ClInclude Include="DXSDK\XboxDDSTextureLoader.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
     <ClInclude Include="DXSDK\Audio.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\BufferHelpers.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\CommonStates.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\ConstantBufferTypes.h">
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\DDSTextureLoader.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\Delegates.h">
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\DirectXHelpers.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\Effects.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\GamePad.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\GraphicsMemory.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\Keyboard.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\Model.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\Mouse.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\PostProcess.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\PrimitiveBatch.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\ScreenGrab.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="DXSDK\SpriteBatch.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="DXSDK\SpriteFont.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="DXSDK\XboxDDSTextureLoader.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\SimpleMath.h">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\SpriteBatch.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\SpriteFont.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\VertexTypes.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\WICTextureLoader.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereObject.h">
+      <Filter>GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -156,16 +165,9 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shaders\VertexShader.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Shaders\PixelShader.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="DXSDK\SimpleMath.inl">
-      <Filter>Libraries</Filter>
+      <Filter>Source Files\DirectXSDK</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

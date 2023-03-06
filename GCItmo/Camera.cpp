@@ -135,6 +135,12 @@ void Camera::UpdateViewMatrix()
 	this->vec_right = XMVector3TransformCoord(this->RIGHT_VECTOR, vecRotationMatrix);
 }
 
+void Camera::SetViewMatrix(DirectX::XMMATRIX vMat)
+{
+	viewMatrix = vMat;
+}
+
+
 void Camera::SetLookAtPos(DirectX::XMFLOAT3 lookAtPos)
 {
 	if (lookAtPos.x == this->pos.x && lookAtPos.y == this->pos.y && lookAtPos.z == this->pos.z)

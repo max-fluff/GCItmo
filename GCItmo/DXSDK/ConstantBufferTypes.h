@@ -5,6 +5,5 @@
 
 struct CB_VS_vertexshader
 {
-	DirectX::XMMATRIX projectMat;
-	DirectX::XMMATRIX viewMat;
+	DirectX::XMMATRIX worldViewProj;
 };

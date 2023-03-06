@@ -6,6 +6,7 @@
 
 #include "Camera.h"
 #include "DisplayWin32.h"
+#include "GameComponents/Planet.h"
 
 Game* Game::instance = nullptr;
 
@@ -55,13 +56,6 @@ void Game::CreateDeviceAndSwapChain()
 
 	swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backTex);
 	device->CreateRenderTargetView(backTex, nullptr, &renderTargetView);
-
-	/*rastDesc.CullMode = D3D11_CULL_NONE;
-	rastDesc.FillMode = D3D11_FILL_SOLID;
-
-	device->CreateRasterizerState(&rastDesc, &rastState);
-
-	context->RSSetState(rastState);*/
 }
 
 void Game::Initialize()
@@ -71,41 +65,78 @@ void Game::Initialize()
 
 	display = new DisplayWin32(winHeight, winWidth, L"My3D App", this);
 	wInput = new WinInput(this);
-	
+
 	CreateDeviceAndSwapChain();
 
 	camera = new Camera();
 	camera->SetPosition(0.0f, 0.0f, -2.0f);
 	camera->SetProjectionValues(90.0f, static_cast<float>(winWidth) / static_cast<float>(winHeight), 0.1f, 1000.0f);
-	
+
 	cameraController = new CameraController(camera, this);
 
-	D3D11_TEXTURE2D_DESC depthStencilDesc;
-	depthStencilDesc.Width = winWidth;
-	depthStencilDesc.Height = winHeight;
-	depthStencilDesc.MipLevels = 1;
-	depthStencilDesc.ArraySize = 1;
-	depthStencilDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	depthStencilDesc.SampleDesc.Count = 1;
-	depthStencilDesc.SampleDesc.Quality = 0;
-	depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
-	depthStencilDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-	depthStencilDesc.CPUAccessFlags = 0;
-	depthStencilDesc.MiscFlags = 0;
+	D3D11_TEXTURE2D_DESC textureDesc;
+	textureDesc.Width = winWidth;
+	textureDesc.Height = winHeight;
+	textureDesc.MipLevels = 1;
+	textureDesc.ArraySize = 1;
+	textureDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	textureDesc.SampleDesc.Count = 1;
+	textureDesc.SampleDesc.Quality = 0;
+	textureDesc.Usage = D3D11_USAGE_DEFAULT;
+	textureDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	textureDesc.CPUAccessFlags = 0;
+	textureDesc.MiscFlags = 0;
 
-	this->device->CreateTexture2D(&depthStencilDesc, nullptr, &depthStencilBuffer);
+	this->device->CreateTexture2D(&textureDesc, nullptr, &depthStencilBuffer);
 
 	this->device->CreateDepthStencilView(depthStencilBuffer, nullptr, &depthStencilView);
 
+	context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);
+
+	D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
+	ZeroMemory(&depthStencilDesc, sizeof(D3D11_DEPTH_STENCIL_DESC));
+
+	depthStencilDesc.DepthEnable = true;
+	depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+
+	device->CreateDepthStencilState(&depthStencilDesc, &depthStencilState);
+
 	D3D11_VIEWPORT viewport;
-	viewport.Width = static_cast<float>(800);
-	viewport.Height = static_cast<float>(800);
+	viewport.Width = static_cast<float>(winWidth);
+	viewport.Height = static_cast<float>(winHeight);
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
 	viewport.MinDepth = 0;
 	viewport.MaxDepth = 1.0f;
 
 	context->RSSetViewports(1, &viewport);
+
+	auto sun = new Planet(this, 0.5f, 0.2f, 0.0f, 0.0f, L"Textures\\sun.png", nullptr);
+	GameComponent* mercury = new Planet(this, 0.1f, 100.0f, 1.0f, 1.5f, L"Textures\\mercury.png", nullptr);
+	GameComponent* mercury1 = new Planet(this, 0.03f, 10.0f, 0.2f, 0.2f, L"Textures\\mercury.png", (Planet*)mercury);
+	GameComponent* venus = new Planet(this, 0.2f, 2.5f, 1.1f, 3.0f, L"Textures\\venus.jpg", nullptr);
+	GameComponent* earth = new Planet(this, 0.15f, 2.0f, 1.0f, 4.5f, L"Textures\\earth.jpg", nullptr);
+	GameComponent* mars = new Planet(this, 0.15f, 1.9f, 0.8f, 5.5f, L"Textures\\mars.jpg", nullptr);
+	GameComponent* jupiter = new Planet(this, 0.4f, 1.6f, 0.6f, 6.5f, L"Textures\\jupyter.jpg", nullptr);
+	GameComponent* saturn = new Planet(this, 0.35f, 1.4f, 0.5f, 7.5f, L"Textures\\saturn.jpg", nullptr);
+	GameComponent* uranus = new Planet(this, 0.3f, 1.0f, 0.4f, 9.0f, L"Textures\\uranus.png", nullptr);
+	GameComponent* neptune = new Planet(this, 0.35f, 0.0f, 0.3f, 10.0f, L"Textures\\neptune.jpg", nullptr);
+	GameComponent* pluto = new Planet(this, 0.05f, 1.7f, 0.1f, 11.0f, L"Textures\\sun.png", nullptr);
+
+
+	components.push_back(new SphereObject(this, sun, L"Textures\\sun.png"));
+	components.push_back(sun);
+	/*components.push_back(mercury);
+	components.push_back(mercury1);
+	components.push_back(venus);
+	components.push_back(earth);
+	components.push_back(mars);
+	components.push_back(jupiter);
+	components.push_back(saturn);
+	components.push_back(uranus);
+	components.push_back(neptune);
+	components.push_back(pluto);*/
 
 	for (const auto component : components)
 		component->Init();
@@ -124,7 +155,7 @@ void Game::Update(float deltaTime)
 
 	for (const auto component : components)
 		component->Update(deltaTime);
-	
+
 	PreDraw();
 
 	for (const auto component : components)
@@ -135,22 +166,17 @@ void Game::Update(float deltaTime)
 
 void Game::PreDraw()
 {
-	constexpr float bgColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	constexpr float bgColor[] = {0.0f, 0.0f, 0.0f, 1.0f};
 	context->ClearRenderTargetView(renderTargetView, bgColor);
 	context->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-	context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);
+	//context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);
 
 	const DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-	//camera->AdjustPosition(0.0f,0.01f,0.0f);
-	//camera->SetLookAtPos(DirectX::XMFLOAT3(0.0f,0.0f,0.0f));
-	worldViewData.projectMat = camera->GetProjectionMatrix();
-	worldViewData.viewMat = world * camera->GetViewMatrix();
+	worldViewData.worldViewProj = world * camera->GetViewMatrix() * camera->GetProjectionMatrix();
 }
 
 void Game::PostDraw() const
 {
-	//context->OMSetRenderTargets(0, nullptr, nullptr);
-
 	swapChain->Present(1, 0);
 }
 
@@ -167,8 +193,9 @@ void Game::Run()
 
 	while (wInput->ProcessMessages())
 	{
-		auto	curTime = std::chrono::steady_clock::now();
-		const float	deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(curTime - PrevTime).count() / 1000000.0f;
+		auto curTime = std::chrono::steady_clock::now();
+		const float deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(curTime - PrevTime).count() /
+			1000000.0f;
 		PrevTime = curTime;
 		Update(deltaTime);
 	}

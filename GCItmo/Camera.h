@@ -1,4 +1,4 @@
-﻿#pragma once
+﻿ #pragma once
 #include <directxmath.h>
 
 class Camera
@@ -27,6 +27,8 @@ public:
     void AdjustRotation(float x, float y, float z);
     void AdjustTransformation(DirectX::XMMATRIX transformMat);
 
+    void SetViewMatrix(DirectX::XMMATRIX vMat);
+
     void SetLookAtPos(DirectX::XMFLOAT3 lookAtPos);
 
     const DirectX::XMVECTOR & GetForwardVector();
@@ -37,7 +39,7 @@ public:
 
 private:
     void UpdateViewMatrix();
-    
+
     DirectX::XMVECTOR posVector;
     DirectX::XMVECTOR rotVector;
     DirectX::XMFLOAT3 pos;
