@@ -16,7 +16,7 @@ class Game;
 class SphereObject: public GameComponent
 {
 	const wchar_t* filepath;
-	LPCWSTR shaderPath = L"./Shaders/SphereObject.hlsl";
+	LPCWSTR shaderPath = L"./Shaders/SphereShader.hlsl";
 	Planet* gc;
 	Game* game;
 	std::vector<DirectX::XMFLOAT4> vertices;

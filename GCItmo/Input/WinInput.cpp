@@ -30,7 +30,6 @@ WinInput::~WinInput()
 	delete keys;
 }
 
-
 void WinInput::AddPressedKey(Keys key)
 {
 	keys->insert(key);
@@ -68,19 +67,19 @@ bool WinInput::ProcessMessages()
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 
-
 		switch (msg.message)
 		{
 		case WM_KEYDOWN:
 			{
-				AddPressedKey(static_cast<Keys>(msg.wParam));
+				AddPressedKey((Keys)msg.wParam);
 
 				if (static_cast<unsigned int>(msg.wParam) == static_cast<unsigned int>(Keys::Escape))
 					return false;
+				break;
 			}
 		case WM_KEYUP:
 			{
-				RemovePressedKey(static_cast<Keys>(msg.wParam));
+				RemovePressedKey((Keys)msg.wParam);
 				break;
 			}
 		case WM_LBUTTONDOWN:
@@ -132,17 +131,17 @@ bool WinInput::ProcessMessages()
 		case WM_INPUT:
 			{
 				UINT dataSize;
-				GetRawInputData(reinterpret_cast<HRAWINPUT>(msg.lParam),RID_INPUT, nullptr, &dataSize,
+				GetRawInputData(reinterpret_cast<HRAWINPUT>(msg.lParam), RID_INPUT, NULL, &dataSize,
 				                sizeof(RAWINPUTHEADER));
 
 				if (dataSize > 0)
 				{
-					std::unique_ptr<BYTE[]> rawData = std::make_unique<BYTE[]>(dataSize);
+					std::unique_ptr<BYTE[]> rawdata = std::make_unique<BYTE[]>(dataSize);
 
-					if (GetRawInputData(reinterpret_cast<HRAWINPUT>(msg.lParam),RID_INPUT, rawData.get(), &dataSize,
+					if (GetRawInputData(reinterpret_cast<HRAWINPUT>(msg.lParam), RID_INPUT, rawdata.get(), &dataSize,
 					                    sizeof(RAWINPUTHEADER)) == dataSize)
 					{
-						RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(rawData.get());
+						RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(rawdata.get());
 
 						if (raw->header.dwType == RIM_TYPEMOUSE)
 						{

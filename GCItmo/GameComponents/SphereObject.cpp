@@ -119,7 +119,7 @@ void SphereObject::Init()
 
 	D3D_SHADER_MACRO Shader_Macros[] = {"TEST", "1", "TCOLOR", "float4(0.0f, 1.0f, 0.0f, 1.0f)", nullptr, nullptr};
 
-	auto hr = D3DCompileFromFile(L"./Shaders/SphereObject.hlsl",
+	D3DCompileFromFile(shaderPath,
 	                   nullptr /*macros*/,
 	                   nullptr /*include*/,
 	                   "VSMain",
@@ -129,9 +129,7 @@ void SphereObject::Init()
 	                   &vertexBC,
 	                   nullptr);
 
-	std::cout << hr;
-
-	D3DCompileFromFile(L"./Shaders/SphereObject.hlsl",
+	D3DCompileFromFile(shaderPath,
 	                   Shader_Macros /*macros*/,
 	                   nullptr /*include*/,
 	                   "PSMain",
@@ -186,19 +184,15 @@ void SphereObject::Init()
 	bd.Usage = D3D11_USAGE_DEFAULT;
 	bd.CPUAccessFlags = 0u;
 	bd.MiscFlags = 0u;
-	bd.ByteWidth = sizeof vertices;
-	bd.StructureByteStride = sizeof(DirectX::XMFLOAT4);
+	bd.ByteWidth = sizeof(DirectX::XMFLOAT4) * vertices.size();
+	bd.StructureByteStride = 0u;
 
 	D3D11_SUBRESOURCE_DATA sd = {};
 	sd.pSysMem = static_cast<void*>(vertices.data());
 	sd.SysMemPitch = 0;
 	sd.SysMemSlicePitch = 0;
 
-	game->device->CreateBuffer(
-		&bd,
-		&sd,
-		&pVertexBuffer
-	);
+	game->device->CreateBuffer(&bd, &sd, &pVertexBuffer);
 
 	strides = new UINT[1]{32u};
 	offsets = new UINT[1]{0u};
@@ -208,8 +202,8 @@ void SphereObject::Init()
 	ibd.Usage = D3D11_USAGE_DEFAULT;
 	ibd.CPUAccessFlags = 0u;
 	ibd.MiscFlags = 0u;
-	ibd.ByteWidth = sizeof(indices);
-	ibd.StructureByteStride = sizeof(unsigned short);
+	ibd.ByteWidth = indices.size() * sizeof(int);
+	ibd.StructureByteStride = 0u;
 
 	D3D11_SUBRESOURCE_DATA isd = {};
 	isd.pSysMem = static_cast<void*>(indices.data());
@@ -265,7 +259,6 @@ void SphereObject::Draw()
 	game->context->IASetIndexBuffer(pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 	game->context->IASetVertexBuffers(0, 1, &pVertexBuffer, strides, offsets);
 	game->context->PSSetSamplers(0, 1, &this->samplerState);
-	//game->context->OMSetDepthStencilState(game->depthStencilState.Get(), 0);
 	game->context->VSSetShader(pVertexShader.Get(), nullptr, 0);
 	game->context->PSSetShader(pPixelShader.Get(), nullptr, 0);
 	game->context->PSSetShaderResources(0, 1, &this->myTexture);

@@ -7,7 +7,6 @@
 #include "Camera.h"
 #include "DisplayWin32.h"
 #include "GameComponents/Planet.h"
-#include "GameComponents/SphereObject.h"
 
 Game* Game::instance = nullptr;
 
@@ -70,8 +69,8 @@ void Game::Initialize()
 	CreateDeviceAndSwapChain();
 
 	camera = new Camera();
-	camera->SetPosition(0.0f, 0.0f, -2.0f);
-	camera->SetProjectionValues(90.0f, static_cast<float>(winWidth) / static_cast<float>(winHeight), 0.1f, 1000.0f);
+	camera->SetPosition(0.0f, 0.0f, 0.0f);
+	camera->SetProjectionValues(90.0f, (float)winWidth / (float)winHeight, 0.1f, 1000.0f);
 
 	cameraController = new CameraController(camera, this);
 
@@ -113,31 +112,43 @@ void Game::Initialize()
 
 	context->RSSetViewports(1, &viewport);
 
-	auto sun = new Planet(this, 0.5f, 0.2f, 0.0f, 0.0f, L"Textures\\sun.png", nullptr);
-	GameComponent* mercury = new Planet(this, 0.1f, 100.0f, 1.0f, 1.5f, L"Textures\\mercury.png", nullptr);
-	GameComponent* mercury1 = new Planet(this, 0.03f, 10.0f, 0.2f, 0.2f, L"Textures\\mercury.png", (Planet*)mercury);
-	GameComponent* venus = new Planet(this, 0.2f, 2.5f, 1.1f, 3.0f, L"Textures\\venus.jpg", nullptr);
-	GameComponent* earth = new Planet(this, 0.15f, 2.0f, 1.0f, 4.5f, L"Textures\\earth.jpg", nullptr);
-	GameComponent* mars = new Planet(this, 0.15f, 1.9f, 0.8f, 5.5f, L"Textures\\mars.jpg", nullptr);
-	GameComponent* jupiter = new Planet(this, 0.4f, 1.6f, 0.6f, 6.5f, L"Textures\\jupyter.jpg", nullptr);
-	GameComponent* saturn = new Planet(this, 0.35f, 1.4f, 0.5f, 7.5f, L"Textures\\saturn.jpg", nullptr);
-	GameComponent* uranus = new Planet(this, 0.3f, 1.0f, 0.4f, 9.0f, L"Textures\\uranus.png", nullptr);
-	GameComponent* neptune = new Planet(this, 0.35f, 0.0f, 0.3f, 10.0f, L"Textures\\neptune.jpg", nullptr);
-	GameComponent* pluto = new Planet(this, 0.05f, 1.7f, 0.1f, 11.0f, L"Textures\\sun.png", nullptr);
-
+	auto sun = new Planet(this, 0.5f, 0.2f, 0.0f, 0.0f, nullptr);
+	auto mercury = new Planet(this, 0.1f, 100.0f, 1.0f, 1.5f, nullptr);
+	auto mercury1 = new Planet(this, 0.03f, 10.0f, 0.2f, 0.2f, mercury);
+	auto venus = new Planet(this, 0.2f, 2.5f, 1.1f, 3.0f, nullptr);
+	auto earth = new Planet(this, 0.15f, 2.0f, 1.0f, 4.5f, nullptr);
+	auto moon = new Planet(this, 0.02f, 2.0f, 1.0f, 0.5f, earth);
+	auto mars = new Planet(this, 0.15f, 1.9f, 0.8f, 5.5f, nullptr);
+	auto jupiter = new Planet(this, 0.4f, 1.6f, 0.6f, 6.5f, nullptr);
+	auto saturn = new Planet(this, 0.35f, 1.4f, 0.5f, 7.5f, nullptr);
+	auto uranus = new Planet(this, 0.3f, 1.0f, 0.4f, 9.0f, nullptr);
+	auto neptune = new Planet(this, 0.35f, 0.0f, 0.3f, 10.0f, nullptr);
+	auto pluto = new Planet(this, 0.05f, 1.7f, 0.1f, 11.0f, nullptr);
 
 	components.push_back(new SphereObject(this, sun, L"Textures\\sun.png"));
+	components.push_back(new SphereObject(this, mercury, L"Textures\\mercury.png"));
+	components.push_back(new SphereObject(this, mercury1, L"Textures\\mercury.png"));
+	components.push_back(new SphereObject(this, venus, L"Textures\\venus.jpg"));
+	components.push_back(new SphereObject(this, earth, L"Textures\\earth.jpg"));
+	components.push_back(new SphereObject(this, moon, L"Textures\\earth.jpg"));
+	components.push_back(new SphereObject(this, mars, L"Textures\\mars.jpg"));
+	components.push_back(new SphereObject(this, jupiter, L"Textures\\jupyter.jpg"));
+	components.push_back(new SphereObject(this, saturn, L"Textures\\saturn.jpg"));
+	components.push_back(new SphereObject(this, uranus, L"Textures\\uranus.png"));
+	components.push_back(new SphereObject(this, neptune, L"Textures\\neptune.jpg"));
+	components.push_back(new SphereObject(this, pluto, L"Textures\\sun.png"));
 	components.push_back(sun);
-	/*components.push_back(mercury);
+	components.push_back(mercury);
 	components.push_back(mercury1);
 	components.push_back(venus);
 	components.push_back(earth);
+	components.push_back(moon);
 	components.push_back(mars);
 	components.push_back(jupiter);
 	components.push_back(saturn);
 	components.push_back(uranus);
 	components.push_back(neptune);
-	components.push_back(pluto);*/
+	components.push_back(pluto);
 
 	for (const auto component : components)
 		component->Init();
@@ -152,10 +163,10 @@ void Game::Update(float deltaTime)
 
 	wInput->GetInput();
 
-	cameraController->CameraMovement(deltaTime);
-
 	for (const auto component : components)
 		component->Update(deltaTime);
+
+	cameraController->CameraMovement(deltaTime);
 
 	PreDraw();
 

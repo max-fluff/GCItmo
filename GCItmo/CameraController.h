@@ -8,7 +8,7 @@ class CameraController
 {
 public:
     CameraController();
-    CameraController(Camera* cam,Game* _game );
+    CameraController(Camera* cam,Game* game );
 
     void RawInput(POINT p);
 
@@ -17,4 +17,6 @@ public:
     Game* game;
     Camera* camera;
     float cameraSpeed = 2.0f;
+private:
+    float lastDeltaTime;
 };

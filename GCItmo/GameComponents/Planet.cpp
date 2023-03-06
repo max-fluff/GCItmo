@@ -4,15 +4,14 @@
 
 class Game;
 
-Planet::Planet(Game* game, float _r, float _axisAngle = 3.0f, float _orbitAngle = 0.5f,
-               float _orbitR = 0.0f, LPCWSTR _filepath = L"", Planet* parent = nullptr)
+Planet::Planet(Game* game, float radius, float axisAngle = 3.0f, float orbitAngle = 0.5f,
+               float orbitRadius = 0.0f, Planet* parent = nullptr)
 {
 	this->game = game;
-	this->axeAngle = _axisAngle;
-	this->orbitAngle = _orbitAngle;
-	this->filePath = _filepath;
-	this->orbitR = _orbitR;
-	this->r = _r;
+	this->axeAngle = axisAngle;
+	this->orbitAngle = orbitAngle;
+	this->orbitR = orbitRadius;
+	this->r = radius;
 	this->parent = parent;
 }
 
