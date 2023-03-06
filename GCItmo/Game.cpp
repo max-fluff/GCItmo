@@ -69,7 +69,8 @@ void Game::Initialize()
 	CreateDeviceAndSwapChain();
 
 	camera = new Camera();
-	camera->SetPosition(0.0f, 0.0f, 0.0f);
+	camera->SetPosition(-5.0f, 0.0f, 0.0f);
+	camera->SetRotation(90.0f, 0, 0);
 	camera->SetProjectionValues(90.0f, (float)winWidth / (float)winHeight, 0.1f, 1000.0f);
 
 	cameraController = new CameraController(camera, this);
@@ -113,7 +114,7 @@ void Game::Initialize()
 	context->RSSetViewports(1, &viewport);
 
 	auto sun = new Planet(this, 0.5f, 0.2f, 0.0f, 0.0f, nullptr);
-	auto mercury = new Planet(this, 0.1f, 100.0f, 1.0f, 1.5f, nullptr);
+	auto mercury = new Planet(this, 0.1f, 0.5f, 1.0f, 1.5f, nullptr);
 	auto mercury1 = new Planet(this, 0.03f, 10.0f, 0.2f, 0.2f, mercury);
 	auto venus = new Planet(this, 0.2f, 2.5f, 1.1f, 3.0f, nullptr);
 	auto earth = new Planet(this, 0.15f, 2.0f, 1.0f, 4.5f, nullptr);
@@ -125,18 +126,18 @@ void Game::Initialize()
 	auto neptune = new Planet(this, 0.35f, 0.0f, 0.3f, 10.0f, nullptr);
 	auto pluto = new Planet(this, 0.05f, 1.7f, 0.1f, 11.0f, nullptr);
 
-	components.push_back(new SphereObject(this, sun, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, mercury, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, mercury1, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, venus, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, earth, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, moon, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, mars, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, jupiter, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, saturn, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, uranus, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, neptune, L"Textures\\sun.jpg"));
-	components.push_back(new SphereObject(this, pluto, L"Textures\\sun.jpg"));
+	components.push_back(new SphereObject(this, sun, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, mercury, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, mercury1, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, venus, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, earth, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, moon, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, mars, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, jupiter, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, saturn, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, uranus, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, neptune, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, pluto, L"Textures\\obama.png"));
 	components.push_back(sun);
 	components.push_back(mercury);
 	components.push_back(mercury1);
@@ -178,7 +179,7 @@ void Game::Update(float deltaTime)
 
 void Game::PreDraw()
 {
-	constexpr float bgColor[] = {0.0f, 0.0f, 0.0f, 1.0f};
+	constexpr float bgColor[] = {0.4f, 0.2f, 0.8f, 1.0f};
 	context->ClearRenderTargetView(renderTargetView, bgColor);
 	context->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	//context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);
