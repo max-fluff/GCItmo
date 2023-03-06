@@ -2,9 +2,9 @@
 
 #include <corecrt_math_defines.h>
 
-#include "Game.h"
-#include "DXSDK/WICTextureLoader.h"
-#include "GameComponents/Planet.h"
+#include "../Game.h"
+#include "../DXSDK/WICTextureLoader.h"
+#include "../GameComponents/Planet.h"
 
 SphereObject::SphereObject(Game* game, Planet* gc, LPCWSTR filepath)
 {
@@ -119,7 +119,7 @@ void SphereObject::Init()
 
 	D3D_SHADER_MACRO Shader_Macros[] = {"TEST", "1", "TCOLOR", "float4(0.0f, 1.0f, 0.0f, 1.0f)", nullptr, nullptr};
 
-	D3DCompileFromFile(shaderPath,
+	auto hr = D3DCompileFromFile(L"./Shaders/SphereObject.hlsl",
 	                   nullptr /*macros*/,
 	                   nullptr /*include*/,
 	                   "VSMain",
@@ -129,7 +129,9 @@ void SphereObject::Init()
 	                   &vertexBC,
 	                   nullptr);
 
-	D3DCompileFromFile(shaderPath,
+	std::cout << hr;
+
+	D3DCompileFromFile(L"./Shaders/SphereObject.hlsl",
 	                   Shader_Macros /*macros*/,
 	                   nullptr /*include*/,
 	                   "PSMain",
@@ -138,7 +140,6 @@ void SphereObject::Init()
 	                   0,
 	                   &pixelBC,
 	                   nullptr);
-
 
 	game->device->CreateVertexShader(
 		vertexBC->GetBufferPointer(),

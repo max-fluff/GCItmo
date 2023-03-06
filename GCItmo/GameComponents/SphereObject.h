@@ -8,7 +8,7 @@
 
 #include <d3d11.h>
 
-#include "GameComponent.h"
+#include "../GameComponent.h"
 
 class Planet;
 class Game;
@@ -16,7 +16,7 @@ class Game;
 class SphereObject: public GameComponent
 {
 	const wchar_t* filepath;
-	const wchar_t* shaderPath = L"./Shaders/SphereObject.hlsl";
+	LPCWSTR shaderPath = L"./Shaders/SphereObject.hlsl";
 	Planet* gc;
 	Game* game;
 	std::vector<DirectX::XMFLOAT4> vertices;

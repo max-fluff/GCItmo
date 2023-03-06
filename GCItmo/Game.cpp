@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "DisplayWin32.h"
 #include "GameComponents/Planet.h"
+#include "GameComponents/SphereObject.h"
 
 Game* Game::instance = nullptr;
 

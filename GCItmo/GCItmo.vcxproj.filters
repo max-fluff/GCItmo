@@ -54,7 +54,7 @@
     <ClCompile Include="DXSDK\Delegates.cpp">
       <Filter>Source Files\DirectXSDK</Filter>
     </ClCompile>
-    <ClCompile Include="SphereObject.cpp">
+    <ClCompile Include="GameComponents\SphereObject.cpp">
       <Filter>GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,7 +155,7 @@
     <ClInclude Include="DXSDK\WICTextureLoader.h">
       <Filter>Source Files\DirectXSDK</Filter>
     </ClInclude>
-    <ClInclude Include="SphereObject.h">
+    <ClInclude Include="GameComponents\SphereObject.h">
       <Filter>GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

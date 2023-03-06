@@ -2,7 +2,7 @@
 
 #include "../GameComponent.h"
 #include "../DXSDK/ConstantBufferTypes.h"
-#include "../SphereObject.h"
+#include "../GameComponents/SphereObject.h"
 
 #include <DirectXMath.h>
 

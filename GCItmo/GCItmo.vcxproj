@@ -25,9 +25,9 @@
     <ClCompile Include="DXSDK\Delegates.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameComponents\Planet.cpp" />
+    <ClCompile Include="GameComponents\SphereObject.cpp" />
     <ClCompile Include="Input\WinInput.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
-    <ClCompile Include="SphereObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -58,11 +58,11 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
     <ClInclude Include="GameComponents\Planet.h" />
+    <ClInclude Include="GameComponents\SphereObject.h" />
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="Input\Keys.h" />
     <ClInclude Include="Input\WinInput.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SphereObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GCItmo.rc" />
