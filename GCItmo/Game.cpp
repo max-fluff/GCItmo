@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "DisplayWin32.h"
 #include "GameComponents/Planet.h"
+#include "DXSDK/SimpleMath.h"
 
 Game* Game::instance = nullptr;
 
@@ -113,10 +114,10 @@ void Game::Initialize()
 
 	context->RSSetViewports(1, &viewport);
 
-	auto sun = new Planet(this, 0.5f, 0.2f, 0.0f, 0.0f, nullptr);
-	auto mercury = new Planet(this, 0.1f, 0.5f, 1.0f, 1.5f, nullptr);
-	auto mercury1 = new Planet(this, 0.03f, 10.0f, 0.2f, 0.2f, mercury);
-	auto venus = new Planet(this, 0.2f, 2.5f, 1.1f, 3.0f, nullptr);
+	auto sun = new Planet(this, 0.5f, 0.2f, 0.0f, 0.0f, DirectX::SimpleMath::Vector3(1.0f,1.0f,1.0f), nullptr);
+	auto mercury = new Planet(this, 0.1f, 0.5f, 1.0f, 1.5f, DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f), nullptr);
+	auto mercury1 = new Planet(this, 0.03f, 10.0f, 0.8f, 0.2f, DirectX::SimpleMath::Vector3(0.0f, 0.0f, 1.0f), mercury);
+	auto venus = new Planet(this, 0.2f, 2.5f, 1.1f, 3.0f, DirectX::SimpleMath::Vector3(0.0f, 0.0f, 1.0f), nullptr);/*
 	auto earth = new Planet(this, 0.15f, 2.0f, 1.0f, 4.5f, nullptr);
 	auto moon = new Planet(this, 0.02f, 2.0f, 1.0f, 0.5f, earth);
 	auto mars = new Planet(this, 0.15f, 1.9f, 0.8f, 5.5f, nullptr);
@@ -124,12 +125,12 @@ void Game::Initialize()
 	auto saturn = new Planet(this, 0.35f, 1.4f, 0.5f, 7.5f, nullptr);
 	auto uranus = new Planet(this, 0.3f, 1.0f, 0.4f, 9.0f, nullptr);
 	auto neptune = new Planet(this, 0.35f, 0.0f, 0.3f, 10.0f, nullptr);
-	auto pluto = new Planet(this, 0.05f, 1.7f, 0.1f, 11.0f, nullptr);
+	auto pluto = new Planet(this, 0.05f, 1.7f, 0.1f, 11.0f, nullptr);*/
 
 	components.push_back(new SphereObject(this, sun, L"Textures\\obama.png"));
 	components.push_back(new SphereObject(this, mercury, L"Textures\\obama.png"));
 	components.push_back(new SphereObject(this, mercury1, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, venus, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, venus, L"Textures\\obama.png"));/*
 	components.push_back(new SphereObject(this, earth, L"Textures\\obama.png"));
 	components.push_back(new SphereObject(this, moon, L"Textures\\obama.png"));
 	components.push_back(new SphereObject(this, mars, L"Textures\\obama.png"));
@@ -137,11 +138,11 @@ void Game::Initialize()
 	components.push_back(new SphereObject(this, saturn, L"Textures\\obama.png"));
 	components.push_back(new SphereObject(this, uranus, L"Textures\\obama.png"));
 	components.push_back(new SphereObject(this, neptune, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, pluto, L"Textures\\obama.png"));
+	components.push_back(new SphereObject(this, pluto, L"Textures\\obama.png"));*/
 	components.push_back(sun);
 	components.push_back(mercury);
 	components.push_back(mercury1);
-	components.push_back(venus);
+	components.push_back(venus);/*
 	components.push_back(earth);
 	components.push_back(moon);
 	components.push_back(mars);
@@ -149,7 +150,7 @@ void Game::Initialize()
 	components.push_back(saturn);
 	components.push_back(uranus);
 	components.push_back(neptune);
-	components.push_back(pluto);
+	components.push_back(pluto);*/
 
 	for (const auto component : components)
 		component->Init();
@@ -163,6 +164,21 @@ void Game::Update(float deltaTime)
 		totalTime = 0;
 
 	wInput->GetInput();
+
+	if (wInput->IsKeyDown(Keys::D1)) {
+		for (int i= 0;i<components.size();i++)
+		{
+			auto planetCasted = dynamic_cast<Planet*>(components[i]);
+
+			if(planetCasted != nullptr)
+				cameraController->SetPlanetToLookAt(planetCasted);
+		}
+		
+	}
+	else
+	{
+		cameraController->SetPlanetToLookAt(nullptr);
+	}
 
 	for (const auto component : components)
 		component->Update(deltaTime);

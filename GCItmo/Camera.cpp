@@ -60,8 +60,6 @@ void Camera::SetPosition(const DirectX::XMMATRIX& mat)
 
 }
 
-
-
 void Camera::SetPosition(float x, float y, float z)
 {
     this->pos = DirectX::XMFLOAT3(x, y, z);
@@ -119,7 +117,6 @@ void Camera::AdjustRotation(const DirectX::XMVECTOR& rot)
 
 }
 
-
 void Camera::UpdateViewMatrix()
 {
     using namespace DirectX;
@@ -148,7 +145,6 @@ void Camera::SetViewMatrix(DirectX::XMMATRIX vMat)
 {
     viewMatrix = vMat;
 }
-
 
 void Camera::SetLookAtPos(DirectX::XMFLOAT3 lookAtPos)
 {
