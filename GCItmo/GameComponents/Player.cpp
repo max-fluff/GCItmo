@@ -37,10 +37,10 @@ void Player::Draw()
 	collider.Center = pos;
 	for (const auto model : models)
 	{
-		if (collider.Intersects(model->collider) || model->isSticked)
+		if (model->isSticked || collider.Intersects(model->collider))
 		{
-			if (r * scale >= model->collider.Extents.x && r * scale >= model->collider.Extents.y / 2 && r * scale >=
-				model->collider.Extents.z)
+			if (r * scale >= model->collider.Extents.x / 2 && r * scale >= model->collider.Extents.y / 2 && r * scale >=
+				model->collider.Extents.z / 2)
 			{
 				model->playerCoords = spinMat * translationMat;
 				if (!model->isSticked)
@@ -66,7 +66,6 @@ void Player::Draw()
 
 void Player::Update(float deltaSec)
 {
-	std::cout << scale << std::endl;
 	if (scale < targetScale)
 	{
 		scale += deltaSec * 0.1f;

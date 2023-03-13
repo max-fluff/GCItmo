@@ -10,7 +10,7 @@ DebugPlane::DebugPlane(Game* game)
 
 void DebugPlane::Init()
 {
-    plane=DirectX::GeometricPrimitive::CreateBox(game->context,DirectX::XMFLOAT3(10.0f,0.001f,10.0f),false,true);
+    plane=DirectX::GeometricPrimitive::CreateBox(game->context,DirectX::XMFLOAT3(15.0f,0.001f,15.0f),false,true);
 
 }
 
@@ -27,7 +27,7 @@ void DebugPlane::Draw()
 
     HRESULT hr = game->device->CreateDepthStencilState(&depthStencilDesc, &game->depthStencilState);
 
-    plane->Draw(DirectX::XMMatrixIdentity(),game->camera->GetViewMatrix(),game->camera->GetProjectionMatrix(),DirectX::Colors::Aqua);
+    plane->Draw(DirectX::XMMatrixIdentity(),game->camera->GetViewMatrix(),game->camera->GetProjectionMatrix(),DirectX::Colors::Firebrick);
     game->context->OMSetRenderTargets(0, nullptr, nullptr);
 }
 

@@ -64,7 +64,7 @@ void Model3D::ProcessNode(const aiNode* node, const aiScene* scene)
 	for (UINT i = 0; i < node->mNumMeshes; i++)
 	{
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		meshes.push_back(this->ProcessMesh(mesh));
+		meshes.push_back(ProcessMesh(mesh));
 	}
 
 	for (UINT i = 0; i < node->mNumChildren; i++)

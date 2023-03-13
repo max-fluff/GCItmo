@@ -81,16 +81,30 @@ void Game::Initialize()
 	cameraController = new CameraController(camera, this, player);
 
 	auto plane = new DebugPlane(this);
-	auto model1 = new Model3D(this, "Models/trash2.obj", L"Textures\\trash.png",
+	auto model1 = new Model3D(this, "Models\\card.fbx", L"Textures\\card.jpg",
 	                          DirectX::SimpleMath::Vector3(-3.0f, 0.5f, 2.0f),
-	                          DirectX::SimpleMath::Vector3(0.4f, 0.4f, 0.4f));
+	                          DirectX::SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
+	auto model2 = new Model3D(this, "Models\\can.fbx", L"Textures\\can.png",
+		DirectX::SimpleMath::Vector3(1.0f, 0.0, 2.0f),
+		DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
+
+	auto model3 = new Model3D(this, "Models\\hammer.fbx", L"Textures\\hammer.png",
+		DirectX::SimpleMath::Vector3(-2.0f, 0.5, 2.0f),
+		DirectX::SimpleMath::Vector3(5.0f, 5.0f, 5.0f));
+
+	auto model4 = new Model3D(this, "Models\\chair.fbx", L"Textures\\chair.png",
+		DirectX::SimpleMath::Vector3(2.0f, 0.8, 2.0f),
+		DirectX::SimpleMath::Vector3(.06f, .06f, .06f));
 
 	components.push_back(plane);
+
 	components.push_back(model1);
+	components.push_back(model2);
+	components.push_back(model3);
+	components.push_back(model4);
+
 	components.push_back(playerSphere);
 	components.push_back(player);
-
-
 
 	D3D11_TEXTURE2D_DESC textureDesc;
 	textureDesc.Width = winWidth;
