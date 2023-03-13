@@ -57,10 +57,7 @@
     <ClCompile Include="GameComponents\Mesh.cpp">
       <Filter>GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GameComponents\Model3D.cpp">
-      <Filter>GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="GameComponents\ModelObject.cpp">
+    <ClCompile Include="GameComponents\StickyModel.cpp">
       <Filter>GameComponents</Filter>
     </ClCompile>
     <ClCompile Include="GameComponents\DebugPlane.cpp">
@@ -269,10 +266,7 @@
     <ClInclude Include="GameComponents\Mesh.h">
       <Filter>GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="GameComponents\Model3D.h">
-      <Filter>GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameComponents\ModelObject.h">
+    <ClInclude Include="GameComponents\StickyModel.h">
       <Filter>GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\DebugPlane.h">

@@ -7,7 +7,7 @@
 #include "Camera.h"
 #include "DisplayWin32.h"
 #include "GameComponents/DebugPlane.h"
-#include "GameComponents/Model3D.h"
+#include "GameComponents/StickyModel.h"
 #include "GameComponents/SphereObject.h"
 
 Game* Game::instance = nullptr;
@@ -81,18 +81,18 @@ void Game::Initialize()
 	cameraController = new CameraController(camera, this, player);
 
 	auto plane = new DebugPlane(this);
-	auto model1 = new Model3D(this, "Models\\card.fbx", L"Textures\\card.jpg",
+	auto model1 = new StickyModel(this, "Models\\card.fbx", L"Textures\\card.jpg",
 	                          DirectX::SimpleMath::Vector3(-3.0f, 0.5f, 2.0f),
 	                          DirectX::SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
-	auto model2 = new Model3D(this, "Models\\can.fbx", L"Textures\\can.png",
+	auto model2 = new StickyModel(this, "Models\\can.fbx", L"Textures\\can.png",
 		DirectX::SimpleMath::Vector3(1.0f, 0.0, 2.0f),
 		DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
 
-	auto model3 = new Model3D(this, "Models\\hammer.fbx", L"Textures\\hammer.png",
+	auto model3 = new StickyModel(this, "Models\\hammer.fbx", L"Textures\\hammer.png",
 		DirectX::SimpleMath::Vector3(-2.0f, 0.5, 2.0f),
 		DirectX::SimpleMath::Vector3(5.0f, 5.0f, 5.0f));
 
-	auto model4 = new Model3D(this, "Models\\chair.fbx", L"Textures\\chair.png",
+	auto model4 = new StickyModel(this, "Models\\chair.fbx", L"Textures\\chair.png",
 		DirectX::SimpleMath::Vector3(2.0f, 0.8, 2.0f),
 		DirectX::SimpleMath::Vector3(.06f, .06f, .06f));
 
@@ -144,8 +144,17 @@ void Game::Initialize()
 
 	context->RSSetViewports(1, &viewport);
 
-	for (const auto component : components)
+	for (int i = 0; i < components.size(); i++)
+	{
+		const auto component = components[i];
 		component->Init();
+	}
+}
+
+void Game::AddComponent(GameComponent * component)
+{
+	components.push_back(component);
+	component->Init();
 }
 
 void Game::Update(float deltaTime)

@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "../Game.h"
-#include "Model3D.h"
+#include "StickyModel.h"
 
 Player::Player(Game* game, float r, SphereObject* sphere)
 {
@@ -20,7 +20,7 @@ void Player::Init()
 
 	for (const auto gc : game->components)
 	{
-		auto model = dynamic_cast<Model3D*>(gc);
+		auto model = dynamic_cast<StickyModel*>(gc);
 		if (model)
 			models.push_back(model);
 	}

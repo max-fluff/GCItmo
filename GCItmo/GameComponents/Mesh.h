@@ -1,23 +1,48 @@
 ﻿#pragma once
+#include <d3dcommon.h>
 #include <DirectXMath.h>
 #include <vector>
+#include <wrl/client.h>
 
-#include "ModelObject.h"
+#include <d3d11.h>
+
+#include "../GameComponent.h"
+
+#include <vector>
 
 class Game;
 
-class Mesh
+class Mesh : public GameComponent
 {
 public:
-	Mesh(Game* _game, std::vector<DirectX::XMFLOAT4>& vertices, std::vector<int>& indices, ModelObject* sh);
-	void Render();
-	void Initialize();
+	Mesh(Game* _game, std::vector<DirectX::XMFLOAT4>& vertices, std::vector<int>& indices, LPCWSTR _filepath);
+	void Draw();
+	void Init();
 	DirectX::XMMATRIX transformMatrix;
+
+	std::vector< DirectX::XMFLOAT4 > verts;
+	std::vector< int > index;
+	UINT strides[1] = { 32 };
+	UINT offsets[1] = { 0 };
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> myTexture;
+
+	LPCWSTR filepath;
 private:
 	ID3D11Buffer* pIndexBuffer;
 	ID3D11Buffer* pVertexBuffer;
 	int indicesSize;
 
+	ID3D11Buffer* constantBuffer;
 	Game* game;
-	ModelObject* shader;
+
+	LPCWSTR shaderPath = L"./Shaders/SphereShader.hlsl";
+
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> layout;
+	Microsoft::WRL::ComPtr<ID3DBlob> vertexBC;
+	Microsoft::WRL::ComPtr<ID3DBlob> pixelBC;
+
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader;
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rastState;
 };

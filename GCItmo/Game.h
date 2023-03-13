@@ -57,4 +57,6 @@ public:
 	void Initialize();
 
 	void Update(float deltaTime);
+
+	void AddComponent(GameComponent* component);
 };

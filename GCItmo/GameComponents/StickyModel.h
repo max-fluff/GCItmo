@@ -22,12 +22,12 @@ namespace DirectX
 	}
 }
 
-class Model3D : public GameComponent
+class StickyModel : public GameComponent
 {
 public:
-	Model3D(Game* _game, std::string modelPath, LPCWSTR texturePath, DirectX::SimpleMath::Vector3 pos,
+	StickyModel(Game* _game, std::string modelPath, LPCWSTR texturePath, DirectX::SimpleMath::Vector3 pos,
 	        DirectX::SimpleMath::Vector3 scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
-	void SetTexture(ID3D11ShaderResourceView* texture);
+
 	bool Load(std::string& filepath);
 	void ProcessNode(const aiNode* node, const aiScene* scene);
 	Mesh* ProcessMesh(aiMesh* mesh);
@@ -50,14 +50,12 @@ private:
 	void UpdateWorldMatrix();
 
 	ID3D11Buffer* constantBuffer;
-	ID3D11ShaderResourceView* texture = nullptr;
 
 	CB_VS_vertexshader data;
 
 	Game* game;
 
 	std::vector<Mesh*> meshes;
-	std::shared_ptr<ModelObject> shader;
 
 	LPCWSTR texturePath;
 	std::string modelPath;

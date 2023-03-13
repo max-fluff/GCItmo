@@ -25,8 +25,7 @@
     <ClCompile Include="DXSDK\Delegates.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameComponents\Mesh.cpp" />
-    <ClCompile Include="GameComponents\Model3D.cpp" />
-    <ClCompile Include="GameComponents\ModelObject.cpp" />
+    <ClCompile Include="GameComponents\StickyModel.cpp" />
     <ClCompile Include="GameComponents\DebugPlane.cpp" />
     <ClCompile Include="GameComponents\Player.cpp" />
     <ClCompile Include="GameComponents\SphereObject.cpp" />
@@ -96,8 +95,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
     <ClInclude Include="GameComponents\Mesh.h" />
-    <ClInclude Include="GameComponents\Model3D.h" />
-    <ClInclude Include="GameComponents\ModelObject.h" />
+    <ClInclude Include="GameComponents\StickyModel.h" />
     <ClInclude Include="GameComponents\DebugPlane.h" />
     <ClInclude Include="GameComponents\Player.h" />
     <ClInclude Include="GameComponents\SphereObject.h" />

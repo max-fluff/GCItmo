@@ -9,7 +9,7 @@
 #include "../GameComponent.h"
 #include "../DXSDK/SimpleMath.h"
 
-class Model3D;
+class StickyModel;
 class Game;
 
 class Player : public GameComponent
@@ -39,7 +39,7 @@ public:
 	std::shared_ptr<SphereObject> shader;
 	DirectX::BoundingSphere collider;
 
-	std::vector<Model3D*> models;
+	std::vector<StickyModel*> models;
 private:
 	Game* game;
 	SphereObject* sphere;

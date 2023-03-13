@@ -1,9 +1,9 @@
-﻿#include "Model3D.h"
+﻿#include "StickyModel.h"
 #include "Player.h"
 #include "../DXSDK/assimp/cimport.h"
 #include "../DXSDK/assimp/postprocess.h"
 
-Model3D::Model3D(Game* _game, std::string modelPath, LPCWSTR texturePath,
+StickyModel::StickyModel(Game* _game, std::string modelPath, LPCWSTR texturePath,
                  DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Vector3 scale)
 {
 	this->game = _game;
@@ -13,7 +13,7 @@ Model3D::Model3D(Game* _game, std::string modelPath, LPCWSTR texturePath,
 	this->scale = scale;
 }
 
-void Model3D::Init()
+void StickyModel::Init()
 {
 	UpdateWorldMatrix();
 	std::string path = modelPath;
@@ -30,8 +30,6 @@ void Model3D::Init()
 
 	game->device->CreateBuffer(&constantBufDesc, 0, &constantBuffer);
 
-	shader = std::make_shared<ModelObject>(game, this, texturePath);
-	shader->Init();
 	Load(path);
 
 	collider.Center = pos;
@@ -40,12 +38,7 @@ void Model3D::Init()
 	collider.Extents.z = maxValues.z * scale.z;
 }
 
-void Model3D::SetTexture(ID3D11ShaderResourceView* texture)
-{
-	this->texture = texture;
-}
-
-bool Model3D::Load(std::string& filepath)
+bool StickyModel::Load(std::string& filepath)
 {
 	Assimp::Importer importer;
 
@@ -59,12 +52,14 @@ bool Model3D::Load(std::string& filepath)
 	return true;
 }
 
-void Model3D::ProcessNode(const aiNode* node, const aiScene* scene)
+void StickyModel::ProcessNode(const aiNode* node, const aiScene* scene)
 {
 	for (UINT i = 0; i < node->mNumMeshes; i++)
 	{
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		meshes.push_back(ProcessMesh(mesh));
+		auto processedMesh = ProcessMesh(mesh);
+		meshes.push_back(processedMesh);
+		processedMesh->Init();
 	}
 
 	for (UINT i = 0; i < node->mNumChildren; i++)
@@ -73,7 +68,7 @@ void Model3D::ProcessNode(const aiNode* node, const aiScene* scene)
 	}
 }
 
-Mesh* Model3D::ProcessMesh(aiMesh* mesh)
+Mesh* StickyModel::ProcessMesh(aiMesh* mesh)
 {
 	std::vector<DirectX::XMFLOAT4> vertices;
 
@@ -113,17 +108,17 @@ Mesh* Model3D::ProcessMesh(aiMesh* mesh)
 			indices.push_back(face.mIndices[j]);
 	}
 
-	return new Mesh(game, vertices, indices, shader.get());
+	return new Mesh(game, vertices, indices, texturePath);
 }
 
 
-void Model3D::UpdateWorldMatrix()
+void StickyModel::UpdateWorldMatrix()
 {
 	worldMatrix = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z) * DirectX::XMMatrixTranslation(
 		pos.x, pos.y, pos.z);
 }
 
-void Model3D::Draw()
+void StickyModel::Draw()
 {
 	for (int i = 0; i < meshes.size(); i++)
 	{
@@ -138,10 +133,10 @@ void Model3D::Draw()
 		game->context->Unmap(constantBuffer, 0);
 		game->context->VSSetConstantBuffers(0, 1, &constantBuffer);
 
-		meshes[i]->Render();
+		meshes[i]->Draw();
 	}
 }
 
-void Model3D::Update(float deltaSec)
+void StickyModel::Update(float deltaSec)
 {
 }
