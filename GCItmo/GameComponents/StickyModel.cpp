@@ -64,7 +64,7 @@ void StickyModel::ProcessNode(const aiNode* node, const aiScene* scene)
 
 	for (UINT i = 0; i < node->mNumChildren; i++)
 	{
-		this->ProcessNode(node->mChildren[i], scene);
+		ProcessNode(node->mChildren[i], scene);
 	}
 }
 

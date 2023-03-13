@@ -16,8 +16,8 @@ class Mesh : public GameComponent
 {
 public:
 	Mesh(Game* _game, std::vector<DirectX::XMFLOAT4>& vertices, std::vector<int>& indices, LPCWSTR _filepath);
-	void Draw();
-	void Init();
+	void Draw() override;
+	void Init() override;
 	DirectX::XMMATRIX transformMatrix;
 
 	std::vector< DirectX::XMFLOAT4 > verts;
