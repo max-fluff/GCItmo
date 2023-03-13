@@ -48,13 +48,25 @@
     <ClCompile Include="Input\WinInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="GameComponents\Planet.cpp">
-      <Filter>GameComponents</Filter>
-    </ClCompile>
     <ClCompile Include="DXSDK\Delegates.cpp">
       <Filter>Source Files\DirectXSDK</Filter>
     </ClCompile>
     <ClCompile Include="GameComponents\SphereObject.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Mesh.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Model3D.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\ModelObject.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\DebugPlane.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Player.cpp">
       <Filter>GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,9 +97,6 @@
     </ClInclude>
     <ClInclude Include="Input\WinInput.h">
       <Filter>Input</Filter>
-    </ClInclude>
-    <ClInclude Include="GameComponents\Planet.h">
-      <Filter>GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="DXSDK\XboxDDSTextureLoader.h">
       <Filter>Source Files\DirectXSDK</Filter>
@@ -158,6 +167,123 @@
     <ClInclude Include="GameComponents\SphereObject.h">
       <Filter>GameComponents</Filter>
     </ClInclude>
+    <ClInclude Include="DXSDK\assimp\ai_assert.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\anim.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\camera.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\cexport.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\cfileio.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\cimport.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\color4.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\config.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\DefaultLogger.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\defs.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\Exporter.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\Importer.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\importerdesc.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\IOStream.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\IOSystem.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\light.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\Logger.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\LogStream.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\material.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\matrix3x3.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\matrix4x4.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\mesh.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\metadata.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\NullLogger.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\postprocess.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\ProgressHandler.hpp">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\quaternion.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\scene.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\texture.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\types.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\vector2.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\vector3.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\assimp\version.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Mesh.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Model3D.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\ModelObject.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\DebugPlane.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Player.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSDK\GeometricPrimitive.h">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GCItmo.rc">
@@ -168,6 +294,26 @@
     <None Include="DXSDK\SimpleMath.inl">
       <Filter>Source Files\DirectXSDK</Filter>
     </None>
-    <None Include="packages.config" />
+    <None Include="DXSDK\assimp\color4.inl">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </None>
+    <None Include="DXSDK\assimp\material.inl">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </None>
+    <None Include="DXSDK\assimp\matrix3x3.inl">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </None>
+    <None Include="DXSDK\assimp\matrix4x4.inl">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </None>
+    <None Include="DXSDK\assimp\quaternion.inl">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </None>
+    <None Include="DXSDK\assimp\vector2.inl">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </None>
+    <None Include="DXSDK\assimp\vector3.inl">
+      <Filter>Source Files\DirectXSDK</Filter>
+    </None>
   </ItemGroup>
 </Project>

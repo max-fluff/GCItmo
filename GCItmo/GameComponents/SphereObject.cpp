@@ -4,12 +4,11 @@
 
 #include "../Game.h"
 #include "../DXSDK/WICTextureLoader.h"
-#include "../GameComponents/Planet.h"
 
-SphereObject::SphereObject(Game* game, Planet* gc, LPCWSTR filepath)
+SphereObject::SphereObject(Game* game, float radius, LPCWSTR filepath)
 {
 	this->game = game;
-	this->gc = gc;
+	this->radius = radius;
 	this->filepath = filepath;
 }
 
@@ -177,7 +176,7 @@ void SphereObject::Init()
 		vertexBC->GetBufferSize(),
 		pInputLayout.GetAddressOf());
 
-	GenerateSphere(gc->r, 64, 64);
+	GenerateSphere(radius, 64, 64);
 
 	D3D11_BUFFER_DESC bd;
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
@@ -250,7 +249,7 @@ void SphereObject::Draw()
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 
 	game->context->Map(pConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	CopyMemory(mappedResource.pData, &gc->data, sizeof(CB_VS_vertexshader));
+	CopyMemory(mappedResource.pData, &data, sizeof(CB_VS_vertexshader));
 	game->context->Unmap(pConstantBuffer.Get(), 0);
 	game->context->VSSetConstantBuffers(0, 1, pConstantBuffer.GetAddressOf());
 

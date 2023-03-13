@@ -10,15 +10,19 @@
 
 #include "../GameComponent.h"
 
+#include "../DXSDK/ConstantBufferTypes.h"
+
 class Planet;
 class Game;
 
 class SphereObject: public GameComponent
 {
+	float radius;
+
 	const wchar_t* filepath;
 	LPCWSTR shaderPath = L"./Shaders/SphereShader.hlsl";
-	Planet* gc;
 	Game* game;
+
 	std::vector<DirectX::XMFLOAT4> vertices;
 	std::vector<int> indices;
 	ID3D11SamplerState* samplerState;
@@ -34,10 +38,11 @@ class SphereObject: public GameComponent
 	UINT* offsets;
 
 	ID3D11ShaderResourceView* myTexture;
-
 public:
-	SphereObject(Game* game, Planet* gc, LPCWSTR filepath);
+	SphereObject(Game* game, float radius, LPCWSTR filepath);
 	void GenerateSphere(float r, int segments, int slices);
 	void Init() override;
 	void Draw() override;
+
+	CB_VS_vertexshader data;
 };

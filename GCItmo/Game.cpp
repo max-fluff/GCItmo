@@ -6,8 +6,9 @@
 
 #include "Camera.h"
 #include "DisplayWin32.h"
-#include "GameComponents/Planet.h"
-#include "DXSDK/SimpleMath.h"
+#include "GameComponents/DebugPlane.h"
+#include "GameComponents/Model3D.h"
+#include "GameComponents/SphereObject.h"
 
 Game* Game::instance = nullptr;
 
@@ -74,7 +75,22 @@ void Game::Initialize()
 	camera->SetRotation(90.0f, 0, 0);
 	camera->SetProjectionValues(90.0f, (float)winWidth / (float)winHeight, 0.1f, 1000.0f);
 
-	cameraController = new CameraController(camera, this);
+	auto playerSphere = new SphereObject(this, 0.5f, L"Textures\\obama.png");
+	auto player = new Player(this, 0.5f, playerSphere);
+
+	cameraController = new CameraController(camera, this, player);
+
+	auto plane = new DebugPlane(this);
+	auto model1 = new Model3D(this, "Models/trash2.obj", L"Textures\\trash.png",
+	                          DirectX::SimpleMath::Vector3(-3.0f, 0.5f, 2.0f),
+	                          DirectX::SimpleMath::Vector3(0.4f, 0.4f, 0.4f));
+
+	components.push_back(plane);
+	components.push_back(model1);
+	components.push_back(playerSphere);
+	components.push_back(player);
+
+
 
 	D3D11_TEXTURE2D_DESC textureDesc;
 	textureDesc.Width = winWidth;
@@ -114,44 +130,6 @@ void Game::Initialize()
 
 	context->RSSetViewports(1, &viewport);
 
-	auto sun = new Planet(this, 0.5f, 0.2f, 0.0f, 0.0f, DirectX::SimpleMath::Vector3(1.0f,1.0f,1.0f), nullptr);
-	auto mercury = new Planet(this, 0.1f, 0.5f, 1.0f, 1.5f, DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f), nullptr);
-	auto mercury1 = new Planet(this, 0.03f, 10.0f, 0.8f, 0.2f, DirectX::SimpleMath::Vector3(0.0f, 0.0f, 1.0f), mercury);
-	auto venus = new Planet(this, 0.2f, 2.5f, 1.1f, 3.0f, DirectX::SimpleMath::Vector3(0.0f, 0.0f, 1.0f), nullptr);/*
-	auto earth = new Planet(this, 0.15f, 2.0f, 1.0f, 4.5f, nullptr);
-	auto moon = new Planet(this, 0.02f, 2.0f, 1.0f, 0.5f, earth);
-	auto mars = new Planet(this, 0.15f, 1.9f, 0.8f, 5.5f, nullptr);
-	auto jupiter = new Planet(this, 0.4f, 1.6f, 0.6f, 6.5f, nullptr);
-	auto saturn = new Planet(this, 0.35f, 1.4f, 0.5f, 7.5f, nullptr);
-	auto uranus = new Planet(this, 0.3f, 1.0f, 0.4f, 9.0f, nullptr);
-	auto neptune = new Planet(this, 0.35f, 0.0f, 0.3f, 10.0f, nullptr);
-	auto pluto = new Planet(this, 0.05f, 1.7f, 0.1f, 11.0f, nullptr);*/
-
-	components.push_back(new SphereObject(this, sun, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, mercury, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, mercury1, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, venus, L"Textures\\obama.png"));/*
-	components.push_back(new SphereObject(this, earth, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, moon, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, mars, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, jupiter, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, saturn, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, uranus, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, neptune, L"Textures\\obama.png"));
-	components.push_back(new SphereObject(this, pluto, L"Textures\\obama.png"));*/
-	components.push_back(sun);
-	components.push_back(mercury);
-	components.push_back(mercury1);
-	components.push_back(venus);/*
-	components.push_back(earth);
-	components.push_back(moon);
-	components.push_back(mars);
-	components.push_back(jupiter);
-	components.push_back(saturn);
-	components.push_back(uranus);
-	components.push_back(neptune);
-	components.push_back(pluto);*/
-
 	for (const auto component : components)
 		component->Init();
 }
@@ -164,21 +142,6 @@ void Game::Update(float deltaTime)
 		totalTime = 0;
 
 	wInput->GetInput();
-
-	if (wInput->IsKeyDown(Keys::D1)) {
-		for (int i= 0;i<components.size();i++)
-		{
-			auto planetCasted = dynamic_cast<Planet*>(components[i]);
-
-			if(planetCasted != nullptr)
-				cameraController->SetPlanetToLookAt(planetCasted);
-		}
-		
-	}
-	else
-	{
-		cameraController->SetPlanetToLookAt(nullptr);
-	}
 
 	for (const auto component : components)
 		component->Update(deltaTime);

@@ -5,7 +5,6 @@
 #include "Camera.h"
 #include "CameraController.h"
 #include "GameComponent.h"
-//#include "InputDevice.h"
 #include "DXSDK/ConstantBufferTypes.h"
 #include "Input/WinInput.h"
 
@@ -31,8 +30,6 @@ class Game
 	float totalTime;
 	std::chrono::time_point<std::chrono::steady_clock> PrevTime;
 
-	std::vector<GameComponent*> components;
-
 	Game();
 
 	void CreateDeviceAndSwapChain();
@@ -50,6 +47,8 @@ public:
 	ID3D11RenderTargetView* renderTargetView;
 	ID3D11DepthStencilView* depthStencilView;
 	ID3D11DepthStencilState* depthStencilState;
+
+	std::vector<GameComponent*> components;
 
 	DisplayWin32* display;
 
