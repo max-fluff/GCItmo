@@ -22,9 +22,11 @@ CameraController::CameraController(Camera* cam, Game* _game, Player* player)
 void CameraController::RawInput(POINT p)
 {
 	if (game->wInput->IsKeyDown(Keys::RightButton))
+	{
 		this->camera->AdjustRotation(p.y * lastDeltaTime, -p.x * lastDeltaTime, 0.0f);
-	camera->rotationRollMat *= DirectX::XMMatrixRotationRollPitchYaw(p.y * lastDeltaTime, 0, 0.0f);
-	camera->rotationPitchMat *= DirectX::XMMatrixRotationRollPitchYaw(0, -p.x * lastDeltaTime, 0);
+		camera->rotationRollMat *= DirectX::XMMatrixRotationRollPitchYaw(p.y * lastDeltaTime, 0, 0.0f);
+		camera->rotationPitchMat *= DirectX::XMMatrixRotationRollPitchYaw(0, -p.x * lastDeltaTime, 0);
+	}	
 }
 
 
@@ -65,8 +67,7 @@ void CameraController::CameraMovement(float deltaSec)
 	}
 	if (game->wInput->IsKeyDown(Keys::D))
 	{
-				SimpleMath::Vector3 frwdVector = XMVector3Transform(player->FORWARD_VECTOR, camera->rotationPitchMat);
-
+		SimpleMath::Vector3 frwdVector = XMVector3Transform(player->FORWARD_VECTOR, camera->rotationPitchMat);
 		SimpleMath::Vector3 lftVector = XMVector3Transform(player->LEFT_VECTOR, camera->rotationPitchMat);
 		player->spinMat *= DirectX::XMMatrixRotationRollPitchYaw(frwdVector.x * deltaSec, -frwdVector.y * deltaSec,
 			-frwdVector.z * deltaSec);
@@ -74,13 +75,21 @@ void CameraController::CameraMovement(float deltaSec)
 
 		player->translationMat = XMMatrixTranslation(player->pos.x, player->pos.y, player->pos.z);
 	}
-	if (game->wInput->IsKeyDown(Keys::Space))
+	if (game->wInput->IsKeyDown(Keys::Q))
 	{
-		this->camera->AdjustPosition(0.0f, cameraSpeed * deltaSec, 0.0f);
+		SimpleMath::Vector3 upVector = XMVector3Transform(player->UP_VECTOR, camera->rotationPitchMat);
+		player->spinMat *= DirectX::XMMatrixRotationRollPitchYaw(-upVector.x * deltaSec, -upVector.y * deltaSec,
+			upVector.z * deltaSec);
+
+		player->translationMat = XMMatrixTranslation(player->pos.x, player->pos.y, player->pos.z);
 	}
-	if (game->wInput->IsKeyDown(Keys::LeftShift))
+	if (game->wInput->IsKeyDown(Keys::E))
 	{
-		this->camera->AdjustPosition(0.0f, -cameraSpeed * deltaSec, 0.0f);
+		SimpleMath::Vector3 upVector = XMVector3Transform(player->UP_VECTOR, camera->rotationPitchMat);
+		player->spinMat *= DirectX::XMMatrixRotationRollPitchYaw(-upVector.x * deltaSec, upVector.y * deltaSec,
+			upVector.z * deltaSec);
+
+		player->translationMat = XMMatrixTranslation(player->pos.x, player->pos.y, player->pos.z);
 	}
 
 
