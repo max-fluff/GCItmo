@@ -39,8 +39,8 @@ void Player::Draw()
 	{
 		if (model->isSticked || collider.Intersects(model->collider))
 		{
-			if (r * scale >= model->collider.Extents.x / 2 && r * scale >= model->collider.Extents.y / 2 && r * scale >=
-				model->collider.Extents.z / 2)
+			if (r * scale >= model->collider.Extents.x/2 && r * scale >= model->collider.Extents.y / 2 && r * scale >=
+				model->collider.Extents.z/2)
 			{
 				model->playerCoords = spinMat * translationMat;
 				if (!model->isSticked)

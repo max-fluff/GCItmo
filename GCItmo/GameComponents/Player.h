@@ -30,8 +30,10 @@ public:
 	DirectX::SimpleMath::Vector3 pos=DirectX::XMFLOAT3(0,0,0);
 	DirectX::SimpleMath::Vector3 rot=DirectX::XMFLOAT3(0,0,0);
 
-	DirectX::SimpleMath::Vector3 FORWARD_VECTOR=DirectX::XMFLOAT3(0.0f,0.0f,1.0f);
-	DirectX::SimpleMath::Vector3 LEFT_VECTOR=DirectX::XMFLOAT3(1.0f,0.0f,0.0f);
+	DirectX::SimpleMath::Vector3 FORWARD_VECTOR=DirectX::XMFLOAT3(0.0f,0.0f,2.0f);
+	DirectX::SimpleMath::Vector3 LEFT_VECTOR=DirectX::XMFLOAT3(2.0f,0.0f,0.0f);
+	DirectX::SimpleMath::Vector3 UP_VECTOR = DirectX::XMFLOAT3(0.0f, 2.0f, 0.0f);
+
 	float r=0;
 	float scale=1.0f;
 	float targetScale=1.0f;
