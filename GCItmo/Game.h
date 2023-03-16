@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 #include "CameraController.h"
+#include "DirectionalLight.h"
 #include "GameComponent.h"
 #include "DXSDK/ConstantBufferTypes.h"
 #include "Input/WinInput.h"
@@ -51,6 +52,8 @@ public:
 	std::vector<GameComponent*> components;
 
 	DisplayWin32* display;
+
+	DirectionalLight* dirLight;
 
 	static Game& GetInstance();
 

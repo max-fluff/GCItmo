@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="DisplayWin32.cpp" />
     <ClCompile Include="DXSDK\Delegates.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -30,11 +31,13 @@
     <ClCompile Include="GameComponents\Player.cpp" />
     <ClCompile Include="GameComponents\SphereObject.cpp" />
     <ClCompile Include="Input\WinInput.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="MySuper3DApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="DisplayWin32.h" />
     <ClInclude Include="DXSDK\assimp\ai_assert.h" />
     <ClInclude Include="DXSDK\assimp\anim.h" />
@@ -102,6 +105,7 @@
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="Input\Keys.h" />
     <ClInclude Include="Input\WinInput.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +145,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

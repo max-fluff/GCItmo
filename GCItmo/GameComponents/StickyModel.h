@@ -26,7 +26,8 @@ class StickyModel : public GameComponent
 {
 public:
 	StickyModel(Game* _game, std::string modelPath, LPCWSTR texturePath, DirectX::SimpleMath::Vector3 pos,
-	        DirectX::SimpleMath::Vector3 scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
+	        DirectX::SimpleMath::Vector3 scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f),
+			DirectX::SimpleMath::Vector4 _spec = DirectX::SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
 	bool Load(std::string& filepath);
 	void ProcessNode(const aiNode* node, const aiScene* scene);
@@ -39,8 +40,6 @@ public:
 
 	DirectX::SimpleMath::Vector3 pos;
 	DirectX::SimpleMath::Vector3 rot;
-	UINT* strides;
-	UINT* offsets;
 	DirectX::BoundingBox collider;
 	DirectX::XMMATRIX worldMatrix = DirectX::XMMatrixIdentity();
 	DirectX::XMMATRIX playerCoords = DirectX::XMMatrixIdentity();
@@ -51,11 +50,12 @@ private:
 
 	ID3D11Buffer* constantBuffer;
 
-	CB_VS_vertexshader data;
+	CB_ModelLightning data;
 
 	Game* game;
 
 	std::vector<Mesh*> meshes;
+	Material* material;
 
 	LPCWSTR texturePath;
 	std::string modelPath;

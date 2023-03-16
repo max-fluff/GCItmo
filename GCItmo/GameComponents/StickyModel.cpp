@@ -1,16 +1,18 @@
 ﻿#include "StickyModel.h"
 #include "Player.h"
+#include "../Material.h"
 #include "../DXSDK/assimp/cimport.h"
 #include "../DXSDK/assimp/postprocess.h"
 
 StickyModel::StickyModel(Game* _game, std::string modelPath, LPCWSTR texturePath,
-                 DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Vector3 scale)
+                 DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Vector3 scale, DirectX::SimpleMath::Vector4 spec)
 {
 	this->game = _game;
 	this->texturePath = texturePath;
 	this->modelPath = modelPath;
 	this->pos = pos;
 	this->scale = scale;
+	this->material = new Material(spec);
 }
 
 void StickyModel::Init()
@@ -18,7 +20,7 @@ void StickyModel::Init()
 	UpdateWorldMatrix();
 	std::string path = modelPath;
 
-	constexpr auto structSize = sizeof(CB_VS_vertexshader);
+	constexpr auto structSize = sizeof(CB_ModelLightning);
 	D3D11_BUFFER_DESC constantBufDesc = {};
 	constantBufDesc.Usage = D3D11_USAGE_DYNAMIC;
 	constantBufDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -28,7 +30,7 @@ void StickyModel::Init()
 	constantBufDesc.ByteWidth = structSize + (16 - structSize) % 16;
 	constantBufDesc.StructureByteStride = 0;
 
-	game->device->CreateBuffer(&constantBufDesc, 0, &constantBuffer);
+	game->device->CreateBuffer(&constantBufDesc, nullptr, &constantBuffer);
 
 	Load(path);
 
@@ -78,6 +80,8 @@ Mesh* StickyModel::ProcessMesh(aiMesh* mesh)
 	{
 		DirectX::XMFLOAT4 vertex;
 		DirectX::XMFLOAT4 color;
+		DirectX::XMFLOAT4 normals = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+
 		vertex.x = mesh->mVertices[i].x;
 		vertex.y = mesh->mVertices[i].y;
 		vertex.z = mesh->mVertices[i].z;
@@ -96,8 +100,13 @@ Mesh* StickyModel::ProcessMesh(aiMesh* mesh)
 			color.y = mesh->mTextureCoords[0][i].y;
 		}
 
+		normals.x = mesh->mNormals[i].x;
+		normals.y = mesh->mNormals[i].y;
+		normals.z = mesh->mNormals[i].z;
+
 		vertices.push_back(vertex);
 		vertices.push_back(DirectX::XMFLOAT4(color.x, color.y, 1.0f, 1));
+		vertices.push_back(normals);
 	}
 
 	for (UINT i = 0; i < mesh->mNumFaces; i++)
@@ -128,10 +137,25 @@ void StickyModel::Draw()
 			playerCoords *
 			game->camera->GetViewMatrix() * game->camera->GetProjectionMatrix();
 
+		data.worldInverseT =
+			XMMatrixTranspose(
+				XMMatrixInverse(nullptr,
+				                worldMatrix * playerCoords));
+
+		data.world = worldMatrix * playerCoords;
+
+		data.ambient = game->dirLight->ambient;
+		data.light = game->dirLight->light;
+		data.specular = material->specularCoef;
+		data.direction = game->dirLight->direction;
+
+		data.eyePos = DirectX::SimpleMath::Vector4(game->camera->pos.x, game->camera->pos.y, game->camera->pos.z, 1.0f);
+
 		game->context->Map(constantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-		CopyMemory(mappedResource.pData, &data, sizeof(CB_VS_vertexshader));
+		CopyMemory(mappedResource.pData, &data, sizeof(CB_ModelLightning));
 		game->context->Unmap(constantBuffer, 0);
 		game->context->VSSetConstantBuffers(0, 1, &constantBuffer);
+		game->context->PSSetConstantBuffers(0, 1, &constantBuffer);
 
 		meshes[i]->Draw();
 	}

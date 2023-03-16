@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../Game.h"
+#include "../Material.h"
 #include "StickyModel.h"
 
 Player::Player(Game* game, float r, SphereObject* sphere)
@@ -33,6 +34,14 @@ void Player::Draw()
 	sphere->data.worldViewProj = modelMat *
 		game->camera->GetViewMatrix() *
 		game->camera->GetProjectionMatrix();
+
+	sphere->data.worldInverseT = XMMatrixTranspose(
+		XMMatrixInverse(nullptr,
+		                modelMat));
+
+	sphere->data.world = modelMat;
+	
+	sphere->data.eyePos = DirectX::SimpleMath::Vector4(game->camera->pos.x, game->camera->pos.y, game->camera->pos.z, 1.0f);
 
 	collider.Center = pos;
 	for (const auto model : models)

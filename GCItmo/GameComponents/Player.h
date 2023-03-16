@@ -38,7 +38,6 @@ public:
 	float scale=1.0f;
 	float targetScale=1.0f;
 
-	std::shared_ptr<SphereObject> shader;
 	DirectX::BoundingSphere collider;
 
 	std::vector<StickyModel*> models;

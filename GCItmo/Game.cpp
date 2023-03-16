@@ -68,6 +68,12 @@ void Game::Initialize()
 	display = new DisplayWin32(winHeight, winWidth, L"My3D App", this);
 	wInput = new WinInput(this);
 
+	dirLight = new DirectionalLight();
+	dirLight->ambient = DirectX::SimpleMath::Vector4(0.1f, 0.1f, 0.2f, 1.0f);
+	dirLight->direction = DirectX::SimpleMath::Vector4(0.0f, -0.5f, 0.0f, 1.0f);
+	dirLight->light = DirectX::SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+	dirLight->specular = DirectX::SimpleMath::Vector4(0.4f, 0.4f, 0.4f, 50.0f);
+
 	CreateDeviceAndSwapChain();
 
 	camera = new Camera();
@@ -82,19 +88,23 @@ void Game::Initialize()
 
 	auto plane = new DebugPlane(this);
 	auto model1 = new StickyModel(this, "Models\\card.fbx", L"Textures\\card.jpg",
-	                          DirectX::SimpleMath::Vector3(-3.0f, 0.5f, 2.0f),
-	                          DirectX::SimpleMath::Vector3(0.2f, 0.2f, 0.2f));
+	                              DirectX::SimpleMath::Vector3(-3.0f, 0.5f, 2.0f),
+	                              DirectX::SimpleMath::Vector3(0.2f, 0.2f, 0.2f),
+	                              DirectX::SimpleMath::Vector4(0.23f, 0.23f, 0.23f, 100.0f));
 	auto model2 = new StickyModel(this, "Models\\can.fbx", L"Textures\\can.png",
-		DirectX::SimpleMath::Vector3(1.0f, 0.0, 2.0f),
-		DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f));
+	                              DirectX::SimpleMath::Vector3(1.0f, 0.0, 2.0f),
+	                              DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f),
+	                              DirectX::SimpleMath::Vector4(0.23f, 0.23f, 0.23f, 100.0f));
 
 	auto model3 = new StickyModel(this, "Models\\hammer.fbx", L"Textures\\hammer.png",
-		DirectX::SimpleMath::Vector3(-2.0f, 0.5, 2.0f),
-		DirectX::SimpleMath::Vector3(5.0f, 5.0f, 5.0f));
+	                              DirectX::SimpleMath::Vector3(-2.0f, 0.5, 2.0f),
+	                              DirectX::SimpleMath::Vector3(5.0f, 5.0f, 5.0f),
+	                              DirectX::SimpleMath::Vector4(0.23f, 0.23f, 0.23f, 100.0f));
 
 	auto model4 = new StickyModel(this, "Models\\chair.fbx", L"Textures\\chair.png",
-		DirectX::SimpleMath::Vector3(2.0f, 0.8, 2.0f),
-		DirectX::SimpleMath::Vector3(.06f, .06f, .06f));
+	                              DirectX::SimpleMath::Vector3(2.0f, 0.8, 2.0f),
+	                              DirectX::SimpleMath::Vector3(.06f, .06f, .06f),
+	                              DirectX::SimpleMath::Vector4(0.8f, 0.8f, 0.8f, 30.0f));
 
 	components.push_back(plane);
 
@@ -151,7 +161,7 @@ void Game::Initialize()
 	}
 }
 
-void Game::AddComponent(GameComponent * component)
+void Game::AddComponent(GameComponent* component)
 {
 	components.push_back(component);
 	component->Init();

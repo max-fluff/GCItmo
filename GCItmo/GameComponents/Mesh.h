@@ -22,7 +22,7 @@ public:
 
 	std::vector< DirectX::XMFLOAT4 > verts;
 	std::vector< int > index;
-	UINT strides[1] = { 32 };
+	UINT strides[1] = { 48 };
 	UINT offsets[1] = { 0 };
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> myTexture;
@@ -36,7 +36,7 @@ private:
 	ID3D11Buffer* constantBuffer;
 	Game* game;
 
-	LPCWSTR shaderPath = L"./Shaders/SphereShader.hlsl";
+	LPCWSTR shaderPath = L"./Shaders/ModelShader.hlsl";
 
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> layout;
 	Microsoft::WRL::ComPtr<ID3DBlob> vertexBC;

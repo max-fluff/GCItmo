@@ -3,6 +3,7 @@
 #include <corecrt_math_defines.h>
 
 #include "../Game.h"
+#include "../Material.h"
 #include "../DXSDK/WICTextureLoader.h"
 
 SphereObject::SphereObject(Game* game, float radius, LPCWSTR filepath)
@@ -10,6 +11,7 @@ SphereObject::SphereObject(Game* game, float radius, LPCWSTR filepath)
 	this->game = game;
 	this->radius = radius;
 	this->filepath = filepath;
+	this->material = new Material(DirectX::SimpleMath::Vector4(0.8f, 0.8f, 0.8f, 100.0f));
 }
 
 void SphereObject::GenerateSphere(float r, int segments, int slices)
@@ -216,7 +218,7 @@ void SphereObject::Init()
 	cbd.Usage = D3D11_USAGE_DYNAMIC;
 	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	cbd.MiscFlags = 0u;
-	cbd.ByteWidth = sizeof(CB_VS_vertexshader) + (16 - sizeof(CB_VS_vertexshader)) % 16;
+	cbd.ByteWidth = sizeof(CB_ModelLightning) + (16 - sizeof(CB_ModelLightning)) % 16;
 	cbd.StructureByteStride = 0u;
 
 	game->device->CreateBuffer(&cbd, nullptr, pConstantBuffer.GetAddressOf());
@@ -246,21 +248,31 @@ void SphereObject::Init()
 
 void SphereObject::Draw()
 {
+	data.ambient = game->dirLight->ambient;
+	data.light = game->dirLight->light;
+	data.specular = material->specularCoef;
+	data.direction = game->dirLight->direction;
+
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 
 	game->context->Map(pConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	CopyMemory(mappedResource.pData, &data, sizeof(CB_VS_vertexshader));
+	CopyMemory(mappedResource.pData, &data, sizeof(CB_ModelLightning));
 	game->context->Unmap(pConstantBuffer.Get(), 0);
 	game->context->VSSetConstantBuffers(0, 1, pConstantBuffer.GetAddressOf());
+	game->context->PSSetConstantBuffers(0, 1, pConstantBuffer.GetAddressOf());
 
 	game->context->IASetInputLayout(pInputLayout.Get());
 	game->context->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
 	game->context->IASetIndexBuffer(pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 	game->context->IASetVertexBuffers(0, 1, &pVertexBuffer, strides, offsets);
+
 	game->context->PSSetSamplers(0, 1, &this->samplerState);
+
 	game->context->VSSetShader(pVertexShader.Get(), nullptr, 0);
 	game->context->PSSetShader(pPixelShader.Get(), nullptr, 0);
 	game->context->PSSetShaderResources(0, 1, &this->myTexture);
+
 	game->context->OMSetRenderTargets(1, &game->renderTargetView, game->depthStencilView);
 
 	game->context->DrawIndexed(indices.size(), 0, 0);

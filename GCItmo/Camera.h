@@ -38,12 +38,13 @@ public:
     DirectX::XMMATRIX rotationRollMat = DirectX::XMMatrixIdentity();
     DirectX::XMMATRIX rotationPitchMat = DirectX::XMMatrixIdentity();
 
+    DirectX::XMFLOAT3 pos;
 private:
     void UpdateViewMatrix();
 
     DirectX::XMVECTOR posVector;
     DirectX::XMVECTOR rotVector;
-    DirectX::XMFLOAT3 pos;
+
     DirectX::XMFLOAT3 rot;
     DirectX::XMMATRIX viewMatrix;
     DirectX::XMMATRIX projectionMatrix;

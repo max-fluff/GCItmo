@@ -12,6 +12,7 @@
 
 #include "../DXSDK/ConstantBufferTypes.h"
 
+class Material;
 class Planet;
 class Game;
 
@@ -44,5 +45,7 @@ public:
 	void Init() override;
 	void Draw() override;
 
-	CB_VS_vertexshader data;
+	Material* material;
+
+	CB_ModelLightning data;
 };
