@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{e9c460b6-26ad-4e9e-b26a-72f9a7254358}</ProjectGuid>
+    <RootNamespace>test</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)test\DirectXSDK;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)test\Libs\x86\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)test\DirectXSDK;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)test\Libs\x86\Release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)test\DirectXSDK;(SolutionDir)test\DirectXSDK\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)test\Libs\x64\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)test\DirectXSDK;(SolutionDir)test\DirectXSDK\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)test\Libs\x64\Release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\jdczy\source\repos\test\test\DirectXSDK\assimp;C:\Users\jdczy\source\repos\test\test\DirectXSDK</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\jdczy\source\repos\test\test\DirectXSDK\assimp;C:\Users\jdczy\source\repos\test\test\DirectXSDK</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DirectXTK.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>DirectXTK.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera\Camera.cpp" />
+    <ClCompile Include="Camera\CameraController.cpp" />
+    <ClCompile Include="DebugStuff\DebugWindow.cpp" />
+    <ClCompile Include="DirectXSDK\Delegates.cpp">
+      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <Optimization>Disabled</Optimization>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>x64\Debug\</AssemblerListingLocation>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
+      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformationFile>x64\Debug\</BrowseInformationFile>
+      <CompileAs>Default</CompileAs>
+      <ConformanceMode>true</ConformanceMode>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <ErrorReporting>Prompt</ErrorReporting>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableASAN>false</EnableASAN>
+      <EnableFuzzer>false</EnableFuzzer>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <GenerateModuleDependencies>false</GenerateModuleDependencies>
+      <GenerateSourceDependencies>false</GenerateSourceDependencies>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
+      <ModuleOutputFile>x64\Debug\</ModuleOutputFile>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ObjectFileName>x64\Debug\</ObjectFileName>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ProgramDataBaseFileName>x64\Debug\vc143.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>x64\Debug\test.pch</PrecompiledHeaderOutputFile>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessKeepComments>false</PreprocessKeepComments>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <ShowIncludes>false</ShowIncludes>
+      <SourceDependenciesFile>x64\Debug\</SourceDependenciesFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <SpectreMitigation>false</SpectreMitigation>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <TrackerLogDirectory>x64\Debug\test.tlog\</TrackerLogDirectory>
+      <TranslateIncludes>false</TranslateIncludes>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <UseFullPaths>true</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <XMLDocumentationFileName>x64\Debug\</XMLDocumentationFileName>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IntelJCCErratum>false</IntelJCCErratum>
+      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
+      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
+      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <LinkCompiled>true</LinkCompiled>
+    </ClCompile>
+    <ClCompile Include="DisplayWin32.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Graphics\Buffer.cpp" />
+    <ClCompile Include="Graphics\DirectionalLight.cpp" />
+    <ClCompile Include="Graphics\Material.cpp" />
+    <ClCompile Include="Graphics\Mesh.cpp" />
+    <ClCompile Include="Graphics\RenderTexture.cpp" />
+    <ClCompile Include="Graphics\Shader.cpp" />
+    <ClCompile Include="Graphics\ShadowCaster.cpp" />
+    <ClCompile Include="Graphics\Shadows\DebugWindowClass.cpp" />
+    <ClCompile Include="Graphics\Shadows\RenderTextureClass.cpp" />
+    <ClCompile Include="Graphics\Shadows\TextureShaderClass.cpp" />
+    <ClCompile Include="Input\WinInput.cpp">
+      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <Optimization>Disabled</Optimization>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>x64\Debug\</AssemblerListingLocation>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
+      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformationFile>x64\Debug\</BrowseInformationFile>
+      <CompileAs>Default</CompileAs>
+      <ConformanceMode>true</ConformanceMode>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <ErrorReporting>Prompt</ErrorReporting>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableASAN>false</EnableASAN>
+      <EnableFuzzer>false</EnableFuzzer>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <GenerateModuleDependencies>false</GenerateModuleDependencies>
+      <GenerateSourceDependencies>false</GenerateSourceDependencies>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
+      <ModuleOutputFile>x64\Debug\</ModuleOutputFile>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ObjectFileName>x64\Debug\</ObjectFileName>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ProgramDataBaseFileName>x64\Debug\vc143.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>x64\Debug\test.pch</PrecompiledHeaderOutputFile>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessKeepComments>false</PreprocessKeepComments>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <ShowIncludes>false</ShowIncludes>
+      <SourceDependenciesFile>x64\Debug\</SourceDependenciesFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <SpectreMitigation>false</SpectreMitigation>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <TrackerLogDirectory>x64\Debug\test.tlog\</TrackerLogDirectory>
+      <TranslateIncludes>false</TranslateIncludes>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <UseFullPaths>true</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <XMLDocumentationFileName>x64\Debug\</XMLDocumentationFileName>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IntelJCCErratum>false</IntelJCCErratum>
+      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
+      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
+      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <LinkCompiled>true</LinkCompiled>
+    </ClCompile>
+    <ClCompile Include="MyGame\Components\MyCube.cpp" />
+    <ClCompile Include="MyGame\Components\MyDebugPlane.cpp" />
+    <ClCompile Include="MyGame\Components\Player.cpp">
+      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <Optimization>Disabled</Optimization>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>x64\Debug\</AssemblerListingLocation>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
+      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformationFile>x64\Debug\</BrowseInformationFile>
+      <CompileAs>Default</CompileAs>
+      <ConformanceMode>true</ConformanceMode>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <ErrorReporting>Prompt</ErrorReporting>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableASAN>false</EnableASAN>
+      <EnableFuzzer>false</EnableFuzzer>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <GenerateModuleDependencies>false</GenerateModuleDependencies>
+      <GenerateSourceDependencies>false</GenerateSourceDependencies>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
+      <ModuleOutputFile>x64\Debug\</ModuleOutputFile>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ObjectFileName>x64\Debug\</ObjectFileName>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ProgramDataBaseFileName>x64\Debug\vc143.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>x64\Debug\test.pch</PrecompiledHeaderOutputFile>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessKeepComments>false</PreprocessKeepComments>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <ShowIncludes>false</ShowIncludes>
+      <SourceDependenciesFile>x64\Debug\</SourceDependenciesFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <SpectreMitigation>false</SpectreMitigation>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <TrackerLogDirectory>x64\Debug\test.tlog\</TrackerLogDirectory>
+      <TranslateIncludes>false</TranslateIncludes>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <UseFullPaths>true</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <XMLDocumentationFileName>x64\Debug\</XMLDocumentationFileName>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IntelJCCErratum>false</IntelJCCErratum>
+      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
+      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
+      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\jdczy\source\repos\test\test\DirectXSDK</AdditionalIncludeDirectories>
+      <LinkCompiled>true</LinkCompiled>
+    </ClCompile>
+    <ClCompile Include="MyGame\Models\Model3D.cpp">
+      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <Optimization>Disabled</Optimization>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>x64\Debug\</AssemblerListingLocation>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
+      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformationFile>x64\Debug\</BrowseInformationFile>
+      <CompileAs>Default</CompileAs>
+      <ConformanceMode>true</ConformanceMode>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <ErrorReporting>Prompt</ErrorReporting>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableASAN>false</EnableASAN>
+      <EnableFuzzer>false</EnableFuzzer>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <GenerateModuleDependencies>false</GenerateModuleDependencies>
+      <GenerateSourceDependencies>false</GenerateSourceDependencies>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
+      <ModuleOutputFile>x64\Debug\</ModuleOutputFile>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ObjectFileName>x64\Debug\</ObjectFileName>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ProgramDataBaseFileName>x64\Debug\vc143.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>x64\Debug\test.pch</PrecompiledHeaderOutputFile>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessKeepComments>false</PreprocessKeepComments>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <ShowIncludes>false</ShowIncludes>
+      <SourceDependenciesFile>x64\Debug\</SourceDependenciesFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <SpectreMitigation>false</SpectreMitigation>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <TrackerLogDirectory>x64\Debug\test.tlog\</TrackerLogDirectory>
+      <TranslateIncludes>false</TranslateIncludes>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <UseFullPaths>true</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <XMLDocumentationFileName>x64\Debug\</XMLDocumentationFileName>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IntelJCCErratum>false</IntelJCCErratum>
+      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
+      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
+      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\jdczy\source\repos\test\test\DirectXSDK\assimp;C:\Users\jdczy\source\repos\test\test\DirectXSDK;C:\Users\jdczy\Desktop\Assimp\vcpkg\installed\x64-windows\include</AdditionalIncludeDirectories>
+      <LinkCompiled>true</LinkCompiled>
+    </ClCompile>
+    <ClCompile Include="MyGame\Shaders\DepthShader.cpp" />
+    <ClCompile Include="MyGame\Shaders\ModelShader.cpp" />
+    <ClCompile Include="MyGame\Shaders\SphereShader.cpp" />
+    <ClCompile Include="RenderComponents\GameComponent.cpp" />
+    <ClCompile Include="test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Desktop\tmp\Inc\SimpleMath.h" />
+    <ClInclude Include="Camera\Camera.h" />
+    <ClInclude Include="Camera\CameraController.h" />
+    <ClInclude Include="ConstantBufferTypes.h" />
+    <ClInclude Include="DebugStuff\DebugWindow.h" />
+    <ClInclude Include="DirectXSDK\assimp\ai_assert.h" />
+    <ClInclude Include="DirectXSDK\assimp\anim.h" />
+    <ClInclude Include="DirectXSDK\assimp\camera.h" />
+    <ClInclude Include="DirectXSDK\assimp\cexport.h" />
+    <ClInclude Include="DirectXSDK\assimp\cfileio.h" />
+    <ClInclude Include="DirectXSDK\assimp\cimport.h" />
+    <ClInclude Include="DirectXSDK\assimp\color4.h" />
+    <ClInclude Include="DirectXSDK\assimp\color4.inl" />
+    <ClInclude Include="DirectXSDK\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="DirectXSDK\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="DirectXSDK\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="DirectXSDK\assimp\config.h" />
+    <ClInclude Include="DirectXSDK\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\defs.h" />
+    <ClInclude Include="DirectXSDK\assimp\Exporter.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\Importer.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\importerdesc.h" />
+    <ClInclude Include="DirectXSDK\assimp\IOStream.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\IOSystem.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\light.h" />
+    <ClInclude Include="DirectXSDK\assimp\Logger.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\LogStream.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\material.h" />
+    <ClInclude Include="DirectXSDK\assimp\material.inl" />
+    <ClInclude Include="DirectXSDK\assimp\matrix3x3.h" />
+    <ClInclude Include="DirectXSDK\assimp\matrix3x3.inl" />
+    <ClInclude Include="DirectXSDK\assimp\matrix4x4.h" />
+    <ClInclude Include="DirectXSDK\assimp\matrix4x4.inl" />
+    <ClInclude Include="DirectXSDK\assimp\mesh.h" />
+    <ClInclude Include="DirectXSDK\assimp\metadata.h" />
+    <ClInclude Include="DirectXSDK\assimp\NullLogger.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\postprocess.h" />
+    <ClInclude Include="DirectXSDK\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="DirectXSDK\assimp\quaternion.h" />
+    <ClInclude Include="DirectXSDK\assimp\quaternion.inl" />
+    <ClInclude Include="DirectXSDK\assimp\scene.h" />
+    <ClInclude Include="DirectXSDK\assimp\texture.h" />
+    <ClInclude Include="DirectXSDK\assimp\types.h" />
+    <ClInclude Include="DirectXSDK\assimp\vector2.h" />
+    <ClInclude Include="DirectXSDK\assimp\vector2.inl" />
+    <ClInclude Include="DirectXSDK\assimp\vector3.h" />
+    <ClInclude Include="DirectXSDK\assimp\vector3.inl" />
+    <ClInclude Include="DirectXSDK\assimp\version.h" />
+    <ClInclude Include="DirectXSDK\Audio.h" />
+    <ClInclude Include="DirectXSDK\BufferHelpers.h" />
+    <ClInclude Include="DirectXSDK\CommonStates.h" />
+    <ClInclude Include="DirectXSDK\DDSTextureLoader.h" />
+    <ClInclude Include="DirectXSDK\Delegates.h" />
+    <ClInclude Include="DirectXSDK\DirectXHelpers.h" />
+    <ClInclude Include="DirectXSDK\Effects.h" />
+    <ClInclude Include="DirectXSDK\GamePad.h" />
+    <ClInclude Include="DirectXSDK\GeometricPrimitive.h" />
+    <ClInclude Include="DirectXSDK\GraphicsMemory.h" />
+    <ClInclude Include="DirectXSDK\Keyboard.h" />
+    <ClInclude Include="DirectXSDK\Model.h" />
+    <ClInclude Include="DirectXSDK\Mouse.h" />
+    <ClInclude Include="DirectXSDK\PostProcess.h" />
+    <ClInclude Include="DirectXSDK\PrimitiveBatch.h" />
+    <ClInclude Include="DirectXSDK\ScreenGrab.h" />
+    <ClInclude Include="DirectXSDK\SimpleMath.h" />
+    <ClInclude Include="DirectXSDK\SpriteBatch.h" />
+    <ClInclude Include="DirectXSDK\SpriteFont.h" />
+    <ClInclude Include="DirectXSDK\VertexTypes.h" />
+    <ClInclude Include="DirectXSDK\WICTextureLoader.h" />
+    <ClInclude Include="DirectXSDK\XboxDDSTextureLoader.h" />
+    <ClInclude Include="DisplayWin32.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Graphics\Buffer.h" />
+    <ClInclude Include="Graphics\DirectionalLight.h" />
+    <ClInclude Include="Graphics\Material.h" />
+    <ClInclude Include="Graphics\Mesh.h" />
+    <ClInclude Include="Graphics\RenderTexture.h" />
+    <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Graphics\ShadowCaster.h" />
+    <ClInclude Include="Graphics\Shadows\DebugWindowClass.h" />
+    <ClInclude Include="Graphics\Shadows\RenderTextureClass.h" />
+    <ClInclude Include="Graphics\Shadows\TextureShaderClass.h" />
+    <ClInclude Include="Input\Keys.h" />
+    <ClInclude Include="Input\WinInput.h" />
+    <ClInclude Include="MyGame\Components\MyCube.h" />
+    <ClInclude Include="MyGame\Components\MyDebugPlane.h" />
+    <ClInclude Include="MyGame\Components\Player.h" />
+    <ClInclude Include="MyGame\Models\Model3D.h" />
+    <ClInclude Include="MyGame\Shaders\DepthShader.h" />
+    <ClInclude Include="MyGame\Shaders\ModelShader.h" />
+    <ClInclude Include="MyGame\Shaders\SphereShader.h" />
+    <ClInclude Include="RenderComponents\GameComponent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_PSAlphaTestEqNe.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_PSAlphaTestEqNeNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_PSAlphaTestLtGt.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_PSAlphaTestLtGtNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_VSAlphaTest.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_VSAlphaTestNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_VSAlphaTestVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\AlphaTestEffect_VSAlphaTestVcNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasic.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicPixelLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicPixelLightingTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicTxNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicVertexLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicVertexLightingNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicVertexLightingTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_PSBasicVertexLightingTxNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasic.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLight.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLightBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLightTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLightTxBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLightTxVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLightTxVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLightVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicOneLightVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLightingBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLightingTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLightingTxBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLightingTxVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLightingTxVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLightingVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicPixelLightingVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicTxNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicTxVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicTxVcNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVcNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLightingBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLightingTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLightingTxBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLightingTxVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLightingTxVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLightingVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\BasicEffect_VSBasicVertexLightingVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_PSHemiAmbient.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_PSRGBBiTangents.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_PSRGBNormals.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_PSRGBTangents.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebug.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebugBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebugBnInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebugInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebugVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebugVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebugVcBnInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DebugEffect_VSDebugVcInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_main.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_main1Bones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_main1BonesVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_main2Bones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_main2BonesVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_main4Bones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_main4BonesVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLEffect_mainVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLLambert_main.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLLambert_mainTk.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLLambert_mainTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLLambert_mainTxTk.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLPhong_main.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLPhong_mainTk.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLPhong_mainTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLPhong_mainTxTk.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLUnlit_main.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLUnlit_mainTk.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLUnlit_mainTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DGSLUnlit_mainTxTk.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DualTextureEffect_PSDualTexture.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DualTextureEffect_PSDualTextureNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DualTextureEffect_VSDualTexture.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DualTextureEffect_VSDualTextureNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DualTextureEffect_VSDualTextureVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\DualTextureEffect_VSDualTextureVcNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMap.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapDualParabolaPixelLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapDualParabolaPixelLightingFresnel.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapDualParabolaPixelLightingFresnelNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapDualParabolaPixelLightingNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapPixelLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapPixelLightingFresnel.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapPixelLightingFresnelNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapPixelLightingNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapSpecular.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapSpecularNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapSpherePixelLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapSpherePixelLightingFresnel.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapSpherePixelLightingFresnelNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_PSEnvMapSpherePixelLightingNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMap.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapFresnel.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapFresnelBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapOneLight.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapOneLightBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapOneLightFresnel.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapOneLightFresnelBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapPixelLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapPixelLightingBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapPixelLightingBnSM4.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\EnvironmentMapEffect_VSEnvMapPixelLightingSM4.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_PSNormalPixelLightingTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_PSNormalPixelLightingTxNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_PSNormalPixelLightingTxNoFogSpec.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_PSNormalPixelLightingTxNoSpec.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTxBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTxBnInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTxInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTxVc.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTxVcBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTxVcBnInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSNormalPixelLightingTxVcInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSSkinnedPixelLightingTx.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\NormalMapEffect_VSSkinnedPixelLightingTxBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_PSConstant.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_PSTextured.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_PSTexturedEmissive.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_PSTexturedEmissiveVelocity.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_PSTexturedVelocity.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSConstant.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSConstantBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSConstantBnInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSConstantInst.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSConstantVelocity.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSConstantVelocityBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSSkinned.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PBREffect_VSSkinnedBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSBloomBlur.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSBloomCombine.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSBloomExtract.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSCopy.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSDownScale2x2.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSDownScale4x4.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSGaussianBlur5x5.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSMerge.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSMonochrome.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_PSSepia.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\PostProcess_VSQuad.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_PSSkinnedPixelLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_PSSkinnedVertexLighting.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_PSSkinnedVertexLightingNoFog.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedOneLightFourBones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedOneLightFourBonesBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedOneLightOneBone.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedOneLightOneBoneBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedOneLightTwoBones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedOneLightTwoBonesBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedPixelLightingFourBones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedPixelLightingFourBonesBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedPixelLightingOneBone.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedPixelLightingOneBoneBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedPixelLightingTwoBones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedPixelLightingTwoBonesBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedVertexLightingFourBones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedVertexLightingFourBonesBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedVertexLightingOneBone.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedVertexLightingOneBoneBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedVertexLightingTwoBones.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SkinnedEffect_VSSkinnedVertexLightingTwoBonesBn.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SpriteEffect_SpritePixelShader.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\SpriteEffect_SpriteVertexShader.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSACESFilmic.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSACESFilmic_SRGB.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSCopy.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSHDR10.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSReinhard.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSReinhard_SRGB.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSSaturate.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PSSaturate_SRGB.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_PS_SRGB.pdb" />
+    <Content Include="DirectXSDK\Shaders\Compiled\ToneMap_VSQuad.pdb" />
+    <Content Include="DirectXSDK\Shaders\CompileShaders.cmd" />
+    <Content Include="Libs\x64\Debug\DirectXTK.lib" />
+    <Content Include="Libs\x64\Release\assimp.lib" />
+    <Content Include="Libs\x64\Release\DirectXTK.lib" />
+    <Content Include="Libs\x86\Debug\DirectXTK.lib" />
+    <Content Include="Libs\x86\Release\DirectXTK.lib" />
+    <Content Include="MyGame\Models\natale.fbx" />
+    <Content Include="MyGame\Models\trash2.obj" />
+    <Content Include="Textures\blackMarble.jpg" />
+    <Content Include="Textures\floor.jpg" />
+    <Content Include="Textures\grass.jpg" />
+    <Content Include="Textures\marble.jpg" />
+    <Content Include="Textures\navoz.jpg" />
+    <Content Include="Textures\neptune.jpg" />
+    <Content Include="Textures\earth.jpg" />
+    <Content Include="Textures\mars.jpg" />
+    <Content Include="Textures\mercury.png" />
+    <Content Include="Textures\jupyter.jpg" />
+    <Content Include="Textures\saturn.jpg" />
+    <Content Include="Textures\text.jpg" />
+    <Content Include="Textures\sun.png" />
+    <Content Include="Textures\uranus.png" />
+    <Content Include="Textures\venus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\tmp\Inc\SimpleMath.inl" />
+    <None Include="DirectXSDK\SimpleMath.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

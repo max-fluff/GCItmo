@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\RenderComponent">
+      <UniqueIdentifier>{2753acb9-f7e2-40a8-9b7a-65536aef3ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\RenderComponent">
+      <UniqueIdentifier>{140ed67f-bf49-4808-a747-a4f0d548a6c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Input">
+      <UniqueIdentifier>{c6755273-919b-4895-8a20-d3f262f631ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Input">
+      <UniqueIdentifier>{bbefc19d-0217-4622-981b-ac8ba9fa927c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\DirectXSDK">
+      <UniqueIdentifier>{17274fcf-3bf3-40c1-a639-2538ebd0fd73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\DirectXSDK">
+      <UniqueIdentifier>{1e24eea5-c354-4df1-8d97-d54170edb360}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWin32.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\CameraController.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXSDK\Delegates.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\WinInput.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponents\GameComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Buffer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Shader.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGame\Components\MyDebugPlane.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGame\Components\Player.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGame\Shaders\SphereShader.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayWin32.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBufferTypes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\CameraController.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\Delegates.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keys.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\WinInput.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderComponents\GameComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Desktop\tmp\Inc\SimpleMath.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\Audio.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\BufferHelpers.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\CommonStates.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\DDSTextureLoader.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\DirectXHelpers.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\Effects.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\GamePad.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\GeometricPrimitive.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\GraphicsMemory.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\Keyboard.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\Model.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\Mouse.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\PostProcess.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\PrimitiveBatch.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\ScreenGrab.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\SimpleMath.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\SpriteBatch.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\SpriteFont.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\VertexTypes.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\WICTextureLoader.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\XboxDDSTextureLoader.h">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\ai_assert.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\anim.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\camera.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\cexport.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\cfileio.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\cimport.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\color4.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\color4.inl">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\Compiler\poppack1.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\Compiler\pstdint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\Compiler\pushpack1.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\config.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\DefaultLogger.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\defs.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\Exporter.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\Importer.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\importerdesc.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\IOStream.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\IOSystem.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\light.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\Logger.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\LogStream.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\material.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\material.inl">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\matrix3x3.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\matrix3x3.inl">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\matrix4x4.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\matrix4x4.inl">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\mesh.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\metadata.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\NullLogger.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\port\AndroidJNI\AndroidJNIIOSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\postprocess.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\ProgressHandler.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\quaternion.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\quaternion.inl">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\scene.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\texture.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\types.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\vector2.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\vector2.inl">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\vector3.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\vector3.inl">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSDK\assimp\version.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Buffer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Shader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MyGame\Components\MyDebugPlane.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MyGame\Components\Player.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MyGame\Shaders\SphereShader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\tmp\Inc\SimpleMath.inl">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="DirectXSDK\SimpleMath.inl">
+      <Filter>Исходные файлы\DirectXSDK</Filter>
+    </None>
+  </ItemGroup>
+</Project>
