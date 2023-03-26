@@ -28,13 +28,13 @@ int main()
 
 	std::shared_ptr<GameComponent> model2 = std::make_shared<Model3D>(myGame, "MyGame/Models/can.fbx",
 	                                                                  L"Textures\\can.png",
-	                                                                  Vector3(-1.0f, 0.1, 2.0f),
+	                                                                  Vector3(-1.0f, 0.3, 2.0f),
 	                                                                  Vector3(1.0f, 1.0f, 1.0f),
 	                                                                  Vector4(0.23f, 0.23f, 0.23f, 100.0f));
 
 	std::shared_ptr<GameComponent> model3 = std::make_shared<Model3D>(myGame, "MyGame/Models/hammer.fbx",
 	                                                                  L"Textures\\hammer.png",
-	                                                                  Vector3(-2.5f, 0.2, 0.0f),
+	                                                                  Vector3(-2.5f, 0.5, 0.0f),
 	                                                                  Vector3(3.0f, 3.0f, 3.0f),
 	                                                                  Vector4(0.23f, 0.23f, 0.23f, 100.0f));
 
@@ -45,7 +45,7 @@ int main()
 	                                                                  Vector4(0.23f, 0.23f, 0.23f, 10.0f));
 	
 	std::shared_ptr<GameComponent> model7 = std::make_shared<Model3D>(myGame, "MyGame/Models/floor.fbx",
-	                                                                  L"Textures\\grass.jpg",
+	                                                                  L"Textures\\floor.jpg",
 	                                                                  Vector3(0.0f, 0.0f, 0.0f),
 	                                                                  Vector3(0.07f, 0.07f, 0.07f),
 	                                                                  Vector4(0.23f, 0.23f, 0.23f, 100.0f));
